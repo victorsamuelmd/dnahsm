@@ -322,6 +322,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let diagnosticoTexto = "";
   let hayComplicaciones = false;
   let dhakaScore = -1;
+  let dhakaCondiciones = [];
 
   const f75Data = {
     estabilizacion: {
@@ -408,6 +409,41 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+function generarTextoDhaka(condiciones) {
+    if (condiciones.length === 0) return "";
+
+    const textos = {
+      dhaka_condicion: "su estado general está",
+      dhaka_ojos: "sus ojos se encuentran",
+      dhaka_sed: "",
+      dhaka_piel: "el pliegue cutáneo regresa"
+    };
+
+    const frases = [];
+    const grupos = {};
+
+    condiciones.forEach(cond => {
+      if (!grupos[cond.name]) {
+        grupos[cond.name] = [];
+      }
+      grupos[cond.name].push(cond.text.toLowerCase());
+    });
+
+    for (const nombre in grupos) {
+      const valores = grupos[nombre];
+      if (valores.length > 0) {
+        const conector = " o ";
+        if (nombre === 'dhaka_sed') {
+          frases.push(`${valores.join(conector)}`);
+        } else {
+          frases.push(`${textos[nombre]} ${valores.join(conector)}`);
+        }
+      }
+    }
+
+    return `porque ${frases.join(", ")}`;
+  }
+
   function getCIE10(clasificacion) {
     switch (clasificacion) {
       case "severa":
@@ -435,6 +471,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const complicacionesChecks = document.querySelectorAll(
       '#complicaciones-checklist input[type="checkbox"]:checked',
     );
+    const dhakaCondicion = document.querySelector('input[name="dhaka_condicion"]:checked').value;
+    console.log(dhakaCondicion);
     let complicacionesDesc = Array.from(complicacionesChecks)
       .map((cb) => cb.dataset.text.trim())
       .join(", ");
@@ -443,10 +481,12 @@ document.addEventListener("DOMContentLoaded", function() {
       : "Sin signos de complicación evidentes. ";
 
     let dhakaTexto = "";
-    if (dhakaScore === 0)
+    if (dhakaScore === 0) {
       dhakaTexto = "Clínicamente sin deshidratación (DHAKA: 0). ";
-    else if (dhakaScore > 0)
-      dhakaTexto = `Clínicamente con deshidratación (DHAKA: ${dhakaScore}). `;
+    } else if (dhakaScore > 0) {
+      const textoCondiciones = generarTextoDhaka(dhakaCondiciones);
+      dhakaTexto = `Clínicamente con deshidratación (DHAKA: ${dhakaScore}) ${textoCondiciones}. `;
+    }
 
     let plan = "";
     if (manejo === "hospitalario") {
@@ -826,8 +866,16 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
     }
     let score = 0;
+    dhakaCondiciones = [];
     inputs.forEach((input) => {
-      score += parseInt(input.value);
+      const value = parseInt(input.value);
+      if (value > 0) {
+        dhakaCondiciones.push({ 
+          name: input.name,
+          text: input.nextElementSibling.textContent.trim()
+        });
+      }
+      score += value;
     });
     dhakaScore = score;
 
