@@ -471,6 +471,9 @@ function generarTextoDhaka(condiciones) {
     const complicacionesChecks = document.querySelectorAll(
       '#complicaciones-checklist input[type="checkbox"]:checked',
     );
+    const concienciaAlterada = document.getElementById('complicacion-consciencia').checked;
+    const glucometriaValor = parseFloat(document.getElementById('glucometria-valor').value);
+
     let complicacionesDesc = Array.from(complicacionesChecks)
       .map((cb) => cb.dataset.text.trim())
       .join(", ");
@@ -483,17 +486,13 @@ function generarTextoDhaka(condiciones) {
       dhakaTexto = "Clínicamente sin deshidratación (DHAKA: 0). ";
     } else if (dhakaScore > 0) {
       const textoCondiciones = generarTextoDhaka(dhakaCondiciones);
-      dhakaTexto = `Clínicamente con deshidratación (DHAKA: ${dhakaScore}) ${textoCondiciones}. `;
+      dhakaTexto = `Clínicamente con ${resultadoDhakaDiv.textContent.split(".")[1].trim().toLowerCase()} (DHAKA: ${dhakaScore}) ${textoCondiciones}. `;
     }
 
     let plan = "";
     if (manejo === "hospitalario") {
-      const concienciaAlterada = Array.from(complicacionesChecks).some((cb) =>
-        cb.dataset.text.includes("conciencia alterado"),
-      );
       let planHidratacion =
         "C - Evaluar estado de hidratación. No usar líquidos endovenosos de mantenimiento.";
-
       const tieneDiarreaVomito = Array.from(complicacionesChecks).some((cb) =>
         cb.dataset.text.includes("Diarrea/vómito"),
       );
@@ -512,6 +511,15 @@ function generarTextoDhaka(condiciones) {
         }
       }
 
+      let planHipoglicemia = "B - Evitar hipoglicemia: Tomar glucometría cada 4 horas y SOS si hay alteración de conciencia. Corregir con cautela.";
+      if (!isNaN(glucometriaValor) && glucometriaValor < 54) {
+        if (concienciaAlterada) {
+          planHipoglicemia = `B - Manejo de Hipoglicemia (CON alteración de conciencia):\n    - Administre un bolo de DAD 10 %, a razón de 5 ml/kg por SNG o vía endovenosa en cinco minutos.\n    - Repita la glucometria a los 15 minutos si se administró endovenosa, o a los 30 minutos si se administró por vía enteral.\n    - Si persiste hipoglicemia, repita el bolo de DAD 10 % de 5 ml/kg.\n    - Repita la glucometría.\n    - Si hay mejoría, continúe con F-75 por SNG cada 30 minutos, a razón de 3 ml/kg/toma, durante 2 horas.\n    - Repita la glucometría cada hora.\n    - Si persiste la hipoglicemia, presenta hipotermia o el nivel de consciencia se deteriora, continúe con manejo individualizado y descarte patologías infecciosas.`;
+        } else {
+          planHipoglicemia = `B - Manejo de Hipoglicemia (SIN alteración de conciencia):\n    - Administre un bolo de DAD 10 %, a razón de 5 ml/kg/dosis por vía oral o por SNG.\n    - Tome una glucometria a los 30 minutos.\n    - Si persiste la hipoglicemia, repita el bolo de DAD10 % de 5 ml/kg.\n    - Si hay mejoría, continúe con F-75, a razón de 3 ml/kg/toma cada 30 minutos durante 2 horas por vía oral o por SNG.`;
+        }
+      }
+
       let tipoF75 = "";
       if (clasificacion === "moderada") tipoF75 = "moderada";
       if (clasificacion === "severa") {
@@ -527,7 +535,7 @@ function generarTextoDhaka(condiciones) {
       plan =
         `Se decide hospitalizar para manejo de Desnutrición Aguda ${clasificacion} con complicaciones. Se inicia plan de estabilización:\n` +
         `1. A - Asegurar vía aérea, administrar O2 si es necesario.\n` +
-        `2. B - Evitar hipoglicemia: Tomar glucometría cada 4 horas y SOS si hay alteración de conciencia. Corregir con cautela.\n` +
+        `2. ${planHipoglicemia}\n` +
         `3. ${planHidratacion} Vigilar estrictamente signos de sobrecarga hídrica.\n` +
         `4. D - Vigilar función renal y estimar gasto urinario.\n` +
         `5. F - Iniciar F-75: Administrar ${volTomaDia1} ml cada 3 horas. Se recomienda aumento progresivo según evolución y tolerancia: Día 2 a ${mlKgDia2} ml/kg/toma y Día 3 a ${mlKgDia3} ml/kg/toma (recalcular con peso diario).\n` +
