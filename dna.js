@@ -512,12 +512,19 @@ function generarTextoDhaka(condiciones) {
       }
 
       let planHipoglicemia = "B - Evitar hipoglicemia: Tomar glucometría cada 4 horas y SOS si hay alteración de conciencia. Corregir con cautela.";
-      if (!isNaN(glucometriaValor) && glucometriaValor < 54) {
-        if (concienciaAlterada) {
-          planHipoglicemia = `B - Manejo de Hipoglicemia (CON alteración de conciencia):\n    - Administre un bolo de DAD 10 %, a razón de 5 ml/kg por SNG o vía endovenosa en cinco minutos.\n    - Repita la glucometria a los 15 minutos si se administró endovenosa, o a los 30 minutos si se administró por vía enteral.\n    - Si persiste hipoglicemia, repita el bolo de DAD 10 % de 5 ml/kg.\n    - Repita la glucometría.\n    - Si hay mejoría, continúe con F-75 por SNG cada 30 minutos, a razón de 3 ml/kg/toma, durante 2 horas.\n    - Repita la glucometría cada hora.\n    - Si persiste la hipoglicemia, presenta hipotermia o el nivel de consciencia se deteriora, continúe con manejo individualizado y descarte patologías infecciosas.`;
-        } else {
-          planHipoglicemia = `B - Manejo de Hipoglicemia (SIN alteración de conciencia):\n    - Administre un bolo de DAD 10 %, a razón de 5 ml/kg/dosis por vía oral o por SNG.\n    - Tome una glucometria a los 30 minutos.\n    - Si persiste la hipoglicemia, repita el bolo de DAD10 % de 5 ml/kg.\n    - Si hay mejoría, continúe con F-75, a razón de 3 ml/kg/toma cada 30 minutos durante 2 horas por vía oral o por SNG.`;
-        }
+      if (!isNaN(glucometriaValor)) {
+          if (glucometriaValor < 54) {
+              const resumen = `B - Glucosa ${glucometriaValor} mg/dl (Hipoglicemia), por lo que se inicia manejo:\n`;
+              let planDetallado = "";
+              if (concienciaAlterada) {
+                  planDetallado = `    - Administre un bolo de DAD 10 %, a razón de 5 ml/kg por SNG o vía endovenosa en cinco minutos.\n    - Repita la glucometria a los 15 minutos si se administró endovenosa, o a los 30 minutos si se administró por vía enteral.\n    - Si persiste hipoglicemia, repita el bolo de DAD 10 % de 5 ml/kg.\n    - Repita la glucometría.\n    - Si hay mejoría, continúe con F-75 por SNG cada 30 minutos, a razón de 3 ml/kg/toma, durante 2 horas.\n    - Repita la glucometría cada hora.\n    - Si persiste la hipoglicemia, presenta hipotermia o el nivel de consciencia se deteriora, continúe con manejo individualizado y descarte patologías infecciosas.`;
+              } else {
+                  planDetallado = `    - Administre un bolo de DAD 10 %, a razón de 5 ml/kg/dosis por vía oral o por SNG.\n    - Tome una glucometria a los 30 minutos.\n    - Si persiste la hipoglicemia, repita el bolo de DAD10 % de 5 ml/kg.\n    - Si hay mejoría, continúe con F-75, a razón de 3 ml/kg/toma cada 30 minutos durante 2 horas por vía oral o por SNG.`;
+              }
+              planHipoglicemia = resumen + planDetallado;
+          } else {
+              planHipoglicemia = `B - Glucosa ${glucometriaValor} mg/dl (Normal), por lo que se continuará vigilancia cada 4 horas y SOS si hay alteración de conciencia.`;
+          }
       }
 
       let tipoF75 = "";
