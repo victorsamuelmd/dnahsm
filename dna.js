@@ -634,6 +634,7 @@ function generarTextoDhaka(condiciones) {
       document.querySelector('input[name="edema"]:checked').value === "si";
     const pb = parseFloat(document.getElementById("pb").value);
     const peso = parseFloat(document.getElementById("weight-z").value);
+    const glucometriaValor = parseFloat(document.getElementById('glucometria-valor').value);
 
     if (isNaN(peso) || peso <= 0) {
       resultadoDiv.innerHTML = `<p class="text-red-500 font-semibold">Por favor, ingrese un peso válido.</p>`;
@@ -649,7 +650,7 @@ function generarTextoDhaka(condiciones) {
     if (zScore <= -3) {
       clasificacion = "severa";
       diagnosticoTexto = "Desnutrición Aguda Severa";
-      resultadoHTML = `<h4 class="text-2xl font-bold text-red-600">${diagnosticoTexto}</h4><ul class="mt-2 text-left list-disc list-inside text-gray-700">${edema ? "<li>Presencia de edema bilateral.</li>" : ""}${pb <= 11.5 ? `<li>PB ≤ 11.5 cm (valor: ${pb}).</li>` : ""}${zScore <= -3 ? `<li>P/T Z-score ≤ -3 (valor: ${zScore}).</li>` : ""}</ul>`;
+      resultadoHTML = `<h4 class="text-2xl font-bold text-red-600">${diagnosticoTexto}</h4><ul class="mt-2 text-left list-disc list-inside text-gray-700">${edema ? "<li>Presencia de edema bilateral.</li>" : ""}${pb <= 11.5 ? `<li>PB ≤ 11.5 cm (valor: ${pb}).</li>` : ""}${!isNaN(zScore) ? `<li>P/T Z-score ≤ -3 (valor: ${zScore}).</li>` : ""}</ul>`;
     } else if (zScore > -3 && zScore <= -2) {
       clasificacion = "moderada";
       diagnosticoTexto = "Desnutrición Aguda Moderada";
@@ -665,6 +666,14 @@ function generarTextoDhaka(condiciones) {
     } else {
       clasificacion = "";
       resultadoHTML = `<p class="text-gray-500">Datos insuficientes o no válidos para clasificar.</p>`;
+    }
+
+    if (!isNaN(glucometriaValor)) {
+        if (glucometriaValor < 54) {
+            resultadoHTML += `<p class="mt-2 font-semibold text-red-600">Hipoglicemia (valor: ${glucometriaValor} mg/dl).</p>`;
+        } else {
+            resultadoHTML += `<p class="mt-2 text-gray-700">Glucometría normal (valor: ${glucometriaValor} mg/dl).</p>`;
+        }
     }
 
     resultadoDiv.innerHTML = resultadoHTML;
