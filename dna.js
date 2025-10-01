@@ -413,10 +413,10 @@ function generarTextoDhaka(condiciones) {
     if (condiciones.length === 0) return "";
 
     const textos = {
-      dhaka_condicion: "su estado general está",
-      dhaka_ojos: "sus ojos se encuentran",
-      dhaka_sed: "",
-      dhaka_piel: "el pliegue cutáneo regresa"
+      dhaka_apariencia: "su apariencia general es",
+      dhaka_respiracion: "su respiración es",
+      dhaka_piel: "el pliegue cutáneo regresa",
+      dhaka_lagrimas: "sus lágrimas están"
     };
 
     const frases = [];
@@ -471,8 +471,6 @@ function generarTextoDhaka(condiciones) {
     const complicacionesChecks = document.querySelectorAll(
       '#complicaciones-checklist input[type="checkbox"]:checked',
     );
-    const dhakaCondicion = document.querySelector('input[name="dhaka_condicion"]:checked').value;
-    console.log(dhakaCondicion);
     let complicacionesDesc = Array.from(complicacionesChecks)
       .map((cb) => cb.dataset.text.trim())
       .join(", ");
@@ -879,13 +877,13 @@ function generarTextoDhaka(condiciones) {
     });
     dhakaScore = score;
 
-    if (score === 0) {
-      resultadoDhakaDiv.textContent = "Puntaje: 0. Sin Deshidratación.";
+    if (score <= 1) {
+      resultadoDhakaDiv.textContent = `Puntaje: ${score}. Sin Deshidratación.`;
       resultadoDhakaDiv.className = "mt-2 font-semibold text-green-600";
-    } else if (score >= 1 && score <= 4) {
-      resultadoDhakaDiv.textContent = `Puntaje: ${score}. Deshidratación Moderada.`;
+    } else if (score >= 2 && score <= 3) {
+      resultadoDhakaDiv.textContent = `Puntaje: ${score}. Algún Grado de Deshidratación.`;
       resultadoDhakaDiv.className = "mt-2 font-semibold text-yellow-600";
-    } else {
+    } else { // score >= 4
       resultadoDhakaDiv.textContent = `Puntaje: ${score}. Deshidratación Severa.`;
       resultadoDhakaDiv.className = "mt-2 font-semibold text-red-600";
     }
@@ -1002,6 +1000,42 @@ function generarTextoDhaka(condiciones) {
       },
     },
   });
+
+  const complicacionConsciencia = document.getElementById('complicacion-consciencia');
+  const dhakaLetargico = document.getElementById('dhaka-letargico');
+  const dhakaNormal = document.getElementById('dhaka-normal');
+  const dhakaForm = document.getElementById('dhaka-form');
+
+  function sincronizarConsciencia(source) {
+    if (source === 'complicacion' && complicacionConsciencia && dhakaLetargico && dhakaNormal) {
+      if (complicacionConsciencia.checked) {
+        dhakaLetargico.checked = true;
+      } else {
+        dhakaNormal.checked = true;
+      }
+    }
+
+    if (source === 'dhaka' && complicacionConsciencia && dhakaLetargico) {
+      complicacionConsciencia.checked = dhakaLetargico.checked;
+    }
+    
+    // Disparar un evento 'change' en los formularios afectados para que otras lógicas reaccionen
+    const changeEvent = new Event('change', { bubbles: true });
+    if (source === 'complicacion') {
+        dhakaForm.dispatchEvent(changeEvent);
+    }
+    
+    // Llamar a las funciones de recálculo directamente
+    actualizarDecisionManejo();
+    if (document.getElementById('calcular-dhaka-btn')) {
+        document.getElementById('calcular-dhaka-btn').click();
+    }
+  }
+
+  if (complicacionConsciencia && dhakaLetargico && dhakaNormal && dhakaForm) {
+    complicacionConsciencia.addEventListener('change', () => sincronizarConsciencia('complicacion'));
+    dhakaForm.addEventListener('change', () => sincronizarConsciencia('dhaka'));
+  }
 
   populateEtapaFtlc();
 });

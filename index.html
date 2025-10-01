@@ -471,83 +471,55 @@
               id="dhaka-form"
             >
               <div>
-                <p class="font-medium text-gray-700">Estado General</p>
+                <p class="font-medium text-gray-700">Apariencia General</p>
                 <div class="mt-2 space-y-1">
                   <label class="flex items-center"
                     ><input
                       type="radio"
-                      name="dhaka_condicion"
+                      name="dhaka_apariencia"
                       value="0"
+                      id="dhaka-normal"
                       class="h-4 w-4 text-[#A3B18A]"
+                      checked
                     /><span class="ml-2 text-sm">Normal</span></label
                   ><label class="flex items-center"
                     ><input
                       type="radio"
-                      name="dhaka_condicion"
-                      value="1"
+                      name="dhaka_apariencia"
+                      value="2"
                       class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Irritable</span></label
+                    /><span class="ml-2 text-sm">Inquieto/Irritable</span></label
                   ><label class="flex items-center"
                     ><input
                       type="radio"
-                      name="dhaka_condicion"
-                      value="2"
+                      name="dhaka_apariencia"
+                      value="4"
+                      id="dhaka-letargico"
                       class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Letárgico</span></label
+                    /><span class="ml-2 text-sm"
+                      >Letárgico/Inconsciente</span
+                    ></label
                   >
                 </div>
               </div>
               <div>
-                <p class="font-medium text-gray-700">Ojos</p>
+                <p class="font-medium text-gray-700">Respiración</p>
                 <div class="mt-2 space-y-1">
                   <label class="flex items-center"
                     ><input
                       type="radio"
-                      name="dhaka_ojos"
+                      name="dhaka_respiracion"
                       value="0"
                       class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Normales</span></label
+                      checked
+                    /><span class="ml-2 text-sm">Normal</span></label
                   ><label class="flex items-center"
                     ><input
                       type="radio"
-                      name="dhaka_ojos"
-                      value="1"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Hundidos</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_ojos"
+                      name="dhaka_respiracion"
                       value="2"
                       class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Muy hundidos</span></label
-                  >
-                </div>
-              </div>
-              <div>
-                <p class="font-medium text-gray-700">Sed</p>
-                <div class="mt-2 space-y-1">
-                  <label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_sed"
-                      value="0"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Bebe normal</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_sed"
-                      value="1"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Bebe con avidez</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_sed"
-                      value="2"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Bebe mal</span></label
+                    /><span class="ml-2 text-sm">Profunda</span></label
                   >
                 </div>
               </div>
@@ -560,21 +532,50 @@
                       name="dhaka_piel"
                       value="0"
                       class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Normal</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_piel"
-                      value="1"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Lento (&lt;2s)</span></label
+                      checked
+                    /><span class="ml-2 text-sm">Regresa normal</span></label
                   ><label class="flex items-center"
                     ><input
                       type="radio"
                       name="dhaka_piel"
                       value="2"
                       class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Muy lento (>2s)</span></label
+                    /><span class="ml-2 text-sm">Regresa lento</span></label
+                  ><label class="flex items-center"
+                    ><input
+                      type="radio"
+                      name="dhaka_piel"
+                      value="4"
+                      class="h-4 w-4 text-[#A3B18A]"
+                    /><span class="ml-2 text-sm">Regresa muy lento</span></label
+                  >
+                </div>
+              </div>
+              <div>
+                <p class="font-medium text-gray-700">Lágrimas</p>
+                <div class="mt-2 space-y-1">
+                  <label class="flex items-center"
+                    ><input
+                      type="radio"
+                      name="dhaka_lagrimas"
+                      value="0"
+                      class="h-4 w-4 text-[#A3B18A]"
+                      checked
+                    /><span class="ml-2 text-sm">Normal</span></label
+                  ><label class="flex items-center"
+                    ><input
+                      type="radio"
+                      name="dhaka_lagrimas"
+                      value="1"
+                      class="h-4 w-4 text-[#A3B18A]"
+                    /><span class="ml-2 text-sm">Disminuidas</span></label
+                  ><label class="flex items-center"
+                    ><input
+                      type="radio"
+                      name="dhaka_lagrimas"
+                      value="2"
+                      class="h-4 w-4 text-[#A3B18A]"
+                    /><span class="ml-2 text-sm">Ausentes</span></label
                   >
                 </div>
               </div>
@@ -618,6 +619,7 @@
             <label class="flex items-start"
               ><input
                 type="checkbox"
+                id="complicacion-consciencia"
                 data-text="Estado de conciencia alterado"
                 class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
               />
