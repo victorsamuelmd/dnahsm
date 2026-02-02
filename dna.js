@@ -3,6 +3,13 @@ function displayError(message) {
   resultsDiv.innerHTML = `<p class="text-red-500 font-semibold">${message}</p>`;
 }
 
+//TODO: cuando este en el dia 3 de manejo otro input para poder volver a calcular el z-score
+// para poder mirar si transition
+//
+// solo hacer glucometria si empezo con hipoglicemia y hacer si hay alteracion del estado de consciencia
+//
+// agregar las medidas antropometricas en la plantilla de seguimiento hospitalario.
+
 function displayResults(results, ageInDays) {
   const resultsDiv = document.getElementById("results");
   const ageInMonths = Math.floor(ageInDays / 30.4375);
