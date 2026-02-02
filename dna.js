@@ -246,10 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const copyBtn = document.getElementById("copy-btn");
   const pesoInput = document.getElementById("peso");
 
-  const tabF75 = document.getElementById("tab-f75");
-  const tabFtlc = document.getElementById("tab-ftlc");
-  const calculatorF75 = document.getElementById("calculator-f75");
-  const calculatorFtlc = document.getElementById("calculator-ftlc");
+  // Removed old tab references
 
   const pesoF75Input = document.getElementById("peso-f75");
   const tipoDntF75Select = document.getElementById("tipo-dnt-f75");
@@ -282,6 +279,35 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const calcularDhakaBtn = document.getElementById("calcular-dhaka-btn");
   const resultadoDhakaDiv = document.getElementById("resultado-dhaka");
+
+  // Main Tab Navigation Logic
+  const tabs = [
+    { btnId: "btn-tab-inicial", panelId: "panel-tab-inicial" },
+    { btnId: "btn-tab-estabilizacion", panelId: "panel-tab-estabilizacion" },
+    { btnId: "btn-tab-transicion", panelId: "panel-tab-transicion" },
+    { btnId: "btn-tab-rehabilitacion", panelId: "panel-tab-rehabilitacion" },
+  ];
+
+  tabs.forEach((tab) => {
+    const btn = document.getElementById(tab.btnId);
+    if (btn) {
+      btn.addEventListener("click", () => {
+        // Update Buttons
+        document.querySelectorAll(".main-tab-btn").forEach((b) => {
+          b.classList.remove("active");
+        });
+        btn.classList.add("active");
+        
+        // Show/Hide Panels
+        document.querySelectorAll(".tab-panel").forEach((p) => p.classList.add("hidden"));
+        document.getElementById(tab.panelId).classList.remove("hidden");
+        
+        // Scroll to top
+        window.scrollTo(0,0);
+      });
+    }
+  });
+
 
   document.getElementById("measurementDate").valueAsDate = new Date();
 
@@ -549,7 +575,8 @@ function generarTextoDhaka(condiciones) {
       plan =
         `Se decide hospitalizar para manejo de Desnutrición Aguda ${clasificacion} con complicaciones. Se inicia plan de estabilización:\n` +
         `1. A - Asegurar vía aérea, administrar O2 si es necesario.\n` +
-        `2. ${planHipoglicemia}\n` +
+        `2. ${planHipoglicemia}
+` +
         `3. ${planHidratacion} Vigilar estrictamente signos de sobrecarga hídrica.\n` +
         `4. D - Vigilar función renal y estimar gasto urinario.\n` +
         `5. F - Iniciar F-75: Administrar ${volTomaDia1} ml cada 3 horas. Se recomienda aumento progresivo según evolución y tolerancia: Día 2 a ${mlKgDia2} ml/kg/toma y Día 3 a ${mlKgDia3} ml/kg/toma (recalcular con peso diario).\n` +
@@ -568,7 +595,9 @@ function generarTextoDhaka(condiciones) {
       }
     }
 
-    return `ANÁLISIS:\nPaciente con peso de ${pesoStr} quien presenta hallazgos clínicos y antropométricos compatibles con ${diagnosticoTexto} (CIE-10: ${cie10}). ${dhakaTexto}${analisisComplicaciones}Se considera paciente con alto riesgo de morbimortalidad que requiere intervención nutricional inmediata.\n\nPLAN:\n${plan}\n- Notificación obligatoria a Sivigila.\n- Activación de ruta de manejo integral para la desnutrición aguda.`;
+    return `ANÁLISIS:\nPaciente con peso de ${pesoStr} quien presenta hallazgos clínicos y antropométricos compatibles con ${diagnosticoTexto} (CIE-10: ${cie10}). ${dhakaTexto}${analisisComplicaciones}Se considera paciente con alto riesgo de morbimortalidad que requiere intervención nutricional inmediata.\n\nPLAN:\n${plan}
+- Notificación obligatoria a Sivigila.
+- Activación de ruta de manejo integral para la desnutrición aguda.`;
   }
 
   function actualizarDecisionManejo() {
@@ -705,19 +734,7 @@ function generarTextoDhaka(condiciones) {
     })
   });
 
-  tabF75.addEventListener("click", () => {
-    tabF75.classList.add("active");
-    tabFtlc.classList.remove("active");
-    calculatorF75.classList.remove("hidden");
-    calculatorFtlc.classList.add("hidden");
-  });
-
-  tabFtlc.addEventListener("click", () => {
-    tabFtlc.classList.add("active");
-    tabF75.classList.remove("active");
-    calculatorFtlc.classList.remove("hidden");
-    calculatorF75.classList.add("hidden");
-  });
+  // Removed old tab event listeners for F75/FTLC
 
   calcularF75Btn.addEventListener("click", () => {
     const peso = parseFloat(pesoF75Input.value);
@@ -812,21 +829,37 @@ function generarTextoDhaka(condiciones) {
     }
 
     const plantilla =
-      `ANÁLISIS:\nPaciente en día ${dia} de manejo intrahospitalario por Desnutrición Aguda. Peso actual: ${peso} kg. \n[Describir evolución clínica, tolerancia a la vía oral, diuresis, etc.]\n\nPLAN:\nSe continúa manejo según ABCDARIO:\n` +
-      `A - SV: [TA: FC: FR: SatO2:]. Paciente sin dificultad respiratoria.\n` +
-      `B - Glucometría: [Resultado]. Se continúa vigilancia c/4h y SOS.\n` +
-      `C - Hidratación: [Hidratado/Deshidratado]. Se vigilan signos de sobrecarga hídrica.\n` +
-      `D - Diuresis: [Positiva/Negativa].\n` +
-      `F - Vía Oral: [Tolerancia].\n` +
-      `G - Anemia: [Clínica].\n` +
-      `H - Temperatura: [Valor]. Paciente normotérmico.\n` +
-      `I - Infección: [Sin/Con] signos de respuesta inflamatoria.\n` +
-      `L - Lactancia Materna: Se promueve activamente.\n` +
-      `M - Micronutrientes: Continúa Ácido Fólico 1mg/día.\n` +
-      `${planNutricional}\n` +
-      `P - Piel: [Estado de la piel].\n` +
-      `R - Realimentación: Sin signos de síndrome de realimentación.\n` +
-      `S - Desarrollo: Se promueve estimulación y juego.\n` +
+      `ANÁLISIS:\nPaciente en día ${dia} de manejo intrahospitalario por Desnutrición Aguda. Peso actual: ${peso} kg. 
+[Describir evolución clínica, tolerancia a la vía oral, diuresis, etc.]\n\nPLAN:\nSe continúa manejo según ABCDARIO:
+` +
+      `A - SV: [TA: FC: FR: SatO2:]. Paciente sin dificultad respiratoria.
+` +
+      `B - Glucometría: [Resultado]. Se continúa vigilancia c/4h y SOS.
+` +
+      `C - Hidratación: [Hidratado/Deshidratado]. Se vigilan signos de sobrecarga hídrica.
+` +
+      `D - Diuresis: [Positiva/Negativa].
+` +
+      `F - Vía Oral: [Tolerancia].
+` +
+      `G - Anemia: [Clínica].
+` +
+      `H - Temperatura: [Valor]. Paciente normotérmico.
+` +
+      `I - Infección: [Sin/Con] signos de respuesta inflamatoria.
+` +
+      `L - Lactancia Materna: Se promueve activamente.
+` +
+      `M - Micronutrientes: Continúa Ácido Fólico 1mg/día.
+` +
+      `${planNutricional}
+` +
+      `P - Piel: [Estado de la piel].
+` +
+      `R - Realimentación: Sin signos de síndrome de realimentación.
+` +
+      `S - Desarrollo: Se promueve estimulación y juego.
+` +
       `V - Vacunación: [Esquema].`;
 
     plantillaSeguimientoTexto.value = plantilla;
@@ -861,15 +894,24 @@ function generarTextoDhaka(condiciones) {
 
     const plantilla =
       `ANÁLISIS:\nPaciente con diagnóstico de Desnutrición Aguda ${tipo} (CIE-10: ${cie10}) que completa 7 días de manejo intrahospitalario con adecuada evolución clínica y ganancia de peso. Peso de egreso: ${peso} kg. Cumple criterios para continuar manejo ambulatorio.\n\nPLAN DE EGRESO:\n` +
-      `1. Nutrición: Continuar manejo con Fórmula Terapéutica Lista para Consumo (FTLC), administrar ${sobresDia} sobres al día, distribuidos en varias tomas.\n` +
-      `2. L - Lactancia Materna: Continuar y promover activamente a libre demanda.\n` +
-      `3. Recomendaciones: Educar a la familia sobre la administración de la FTLC, signos de alarma (vómito, diarrea, fiebre, rechazo a la vía oral) para reconsultar de inmediato.\n` +
-      `4. Órdenes:\n` +
-      `   - Cita de control en 7 días con médico general o pediatría.\n` +
-      `   - Valoración por Nutrición y Trabajo Social.\n` +
-      `   - Solicitar Hemograma de control.\n` +
-      `   - Suministro de Ácido Fólico 1 mg/día.\n` +
-      `   - Verificar y completar esquema de vacunación según PAI.\n` +
+      `1. Nutrición: Continuar manejo con Fórmula Terapéutica Lista para Consumo (FTLC), administrar ${sobresDia} sobres al día, distribuidos en varias tomas.
+` +
+      `2. L - Lactancia Materna: Continuar y promover activamente a libre demanda.
+` +
+      `3. Recomendaciones: Educar a la familia sobre la administración de la FTLC, signos de alarma (vómito, diarrea, fiebre, rechazo a la vía oral) para reconsultar de inmediato.
+` +
+      `4. Órdenes:
+` +
+      `   - Cita de control en 7 días con médico general o pediatría.
+` +
+      `   - Valoración por Nutrición y Trabajo Social.
+` +
+      `   - Solicitar Hemograma de control.
+` +
+      `   - Suministro de Ácido Fólico 1 mg/día.
+` +
+      `   - Verificar y completar esquema de vacunación según PAI.
+` +
       `5. Se entrega fórmula FTLC para cubrimiento de 7 días y se asegura la comprensión del plan por parte de los cuidadores.`;
 
     plantillaEgresoTexto.value = plantilla;
@@ -899,7 +941,7 @@ function generarTextoDhaka(condiciones) {
     inputs.forEach((input) => {
       const value = parseInt(input.value);
       if (value > 0) {
-        dhakaCondiciones.push({ 
+        dhakaCondiciones.push({
           name: input.name,
           text: input.nextElementSibling.textContent.trim()
         });
@@ -919,45 +961,6 @@ function generarTextoDhaka(condiciones) {
       resultadoDhakaDiv.className = "mt-2 font-semibold text-red-600";
     }
     actualizarDecisionManejo(); // Recalculate plan with new DHAKA score
-  });
-
-  const accordionHeaders = document.querySelectorAll(".accordion-header");
-  accordionHeaders.forEach((header) => {
-    header.addEventListener("click", () => {
-      const content = header.nextElementSibling;
-      const icon = header.querySelector("span");
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null;
-        icon.style.transform = "rotate(0deg)";
-      } else {
-        document
-          .querySelectorAll(".accordion-content")
-          .forEach((c) => (c.style.maxHeight = null));
-        document
-          .querySelectorAll(".accordion-header span")
-          .forEach((i) => (i.style.transform = "rotate(0deg)"));
-        content.style.maxHeight = content.scrollHeight + "px";
-        icon.style.transform = "rotate(180deg)";
-      }
-    });
-  });
-
-  const navLinks = document.querySelectorAll(".nav-link");
-  const sections = document.querySelectorAll("section");
-  window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      if (pageYOffset >= sectionTop - 80) {
-        current = section.getAttribute("id");
-      }
-    });
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href").includes(current)) {
-        link.classList.add("active");
-      }
-    });
   });
 
   const ctx = document.getElementById("timelineChart").getContext("2d");

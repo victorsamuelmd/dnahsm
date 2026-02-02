@@ -18,15 +18,6 @@
         background-color: #fdfbf7;
         color: #3a3a3a;
       }
-      .nav-link {
-        transition: all 0.3s ease;
-        border-bottom: 2px solid transparent;
-      }
-      .nav-link.active,
-      .nav-link:hover {
-        color: #a3b18a;
-        border-bottom-color: #a3b18a;
-      }
       .card {
         background-color: #ffffff;
         border-radius: 0.75rem;
@@ -51,29 +42,25 @@
       .btn-secondary:hover {
         background-color: #c7c4bb;
       }
-      .tab-btn {
+      /* Main Tab Styles */
+      .main-tab-btn {
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        border-bottom: 3px solid transparent;
+        color: #6b7280;
         transition: all 0.3s ease;
+        white-space: nowrap;
       }
-      .tab-btn.active {
-        background-color: #a3b18a;
-        color: white;
+      .main-tab-btn:hover {
+        color: #344E41;
+        background-color: #f3f4f6;
       }
-      .tab-btn:not(.active) {
-        background-color: #f0efea;
-        color: #3a3a3a;
+      .main-tab-btn.active {
+        color: #344E41;
+        border-bottom-color: #344E41;
+        background-color: #e5e7eb;
       }
-      .accordion-header {
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      .accordion-header:hover {
-        background-color: #f7f6f2;
-      }
-      .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out;
-      }
+      
       .alert-warning {
         background-color: #fef3c7;
         color: #92400e;
@@ -108,1219 +95,516 @@
           <div class="flex-shrink-0">
             <h1 class="text-xl font-bold text-[#344E41]">Guía DNA Infantil</h1>
           </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <a
-                href="#inicio"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Inicio</a
-              >
-              <a
-                href="#z-score-calculator-section"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Calculadora Z-Score</a
-              >
-              <a
-                href="#diagnostico"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Diagnóstico</a
-              >
-              <a
-                href="#complicaciones"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Complicaciones</a
-              >
-              <a
-                href="#apetito"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Prueba Apetito</a
-              >
-              <a
-                href="#manejo"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Plan Inicial</a
-              >
-              <a
-                href="#seguimiento"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Seguimiento Hosp.</a
-              >
-              <a
-                href="#egreso"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Egreso Hosp.</a
-              >
-              <a
-                href="#calculo-formulas"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Calculadora</a
-              >
-              <a
-                href="#tratamiento"
-                class="nav-link px-3 py-2 rounded-md text-sm font-medium"
-                >Fases Tratamiento</a
-              >
-            </div>
-          </div>
         </div>
       </nav>
     </header>
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-      <section id="inicio" class="mb-16 scroll-mt-20">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Reconocimiento Inicial y Principios Básicos
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Al enfrentarse a un niño con sospecha de desnutrición aguda (DNA),
-          considere siempre los siguientes puntos clave.
-        </p>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="card p-6 flex items-start space-x-4">
-            <div
-              class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center"
-            >
-              <span class="text-xl">🚨</span>
-            </div>
-            <div>
-              <h3 class="font-semibold text-lg">Urgencia Vital</h3>
-              <p class="text-gray-600 mt-1">
-                Reconocer la DNA como una condición que amenaza la vida.
-              </p>
-            </div>
-          </div>
-          <div class="card p-6 flex items-start space-x-4">
-            <div
-              class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center"
-            >
-              <span class="text-xl">💧</span>
-            </div>
-            <div>
-              <h3 class="font-semibold text-lg">Manejo Cauteloso</h3>
-              <p class="text-gray-600 mt-1">
-                Tratar la rehidratación y micronutrientes con precaución.
-              </p>
-            </div>
-          </div>
-          <div class="card p-6 flex items-start space-x-4">
-            <div
-              class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center"
-            >
-              <span class="text-xl">⚖️</span>
-            </div>
-            <div>
-              <h3 class="font-semibold text-lg">Ganancia Gradual</h3>
-              <p class="text-gray-600 mt-1">
-                Evitar la ganancia rápida de peso en la fase inicial.
-              </p>
-            </div>
-          </div>
-          <div class="card p-6 flex items-start space-x-4">
-            <div
-              class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center"
-            >
-              <span class="text-xl">🔬</span>
-            </div>
-            <div>
-              <h3 class="font-semibold text-lg">Evitar Paraclínicos</h3>
-              <p class="text-gray-600 mt-1">
-                No realizar tomas innecesarias que no cambiarán el manejo.
-              </p>
-            </div>
-          </div>
-          <div class="card p-6 flex items-start space-x-4">
-            <div
-              class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center"
-            >
-              <span class="text-xl">🦠</span>
-            </div>
-            <div>
-              <h3 class="font-semibold text-lg">Buscar Infecciones</h3>
-              <p class="text-gray-600 mt-1">
-                Buscar y tratar procesos infecciosos o síndrome de
-                realimentación.
-              </p>
-            </div>
-          </div>
-          <div class="card p-6 flex items-start space-x-4">
-            <div
-              class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center"
-            >
-              <span class="text-xl">🍼</span>
-            </div>
-            <div>
-              <h3 class="font-semibold text-lg">No Diluir FTLC</h3>
-              <p class="text-gray-600 mt-1">
-                La Fórmula Terapéutica Lista para el Consumo no debe ser
-                diluida.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="mt-8 p-4 rounded-md bg-amber-50 border border-amber-200">
-          <h4 class="font-semibold text-amber-800">
-            Población Excluida del Lineamiento Estándar
-          </h4>
-          <p class="text-amber-700 mt-1">
-            Este lineamiento se enfoca en niños de 6 a 59 meses. Pacientes
-            mayores de 5 años o con comorbilidades graves (cáncer, enfermedad
-            metabólica, cardiopatía congénita, etc.) requieren un manejo
-            especializado.
+      
+      <!-- Tab Navigation -->
+      <div class="mb-8 border-b border-gray-200 overflow-x-auto">
+        <nav class="flex space-x-4 min-w-max" aria-label="Tabs">
+          <button id="btn-tab-inicial" class="main-tab-btn active rounded-t-lg">Atención Inicial</button>
+          <button id="btn-tab-estabilizacion" class="main-tab-btn rounded-t-lg">Días de Estabilización</button>
+          <button id="btn-tab-transicion" class="main-tab-btn rounded-t-lg">Fase de Transición</button>
+          <button id="btn-tab-rehabilitacion" class="main-tab-btn rounded-t-lg">Fase de Rehabilitación</button>
+        </nav>
+      </div>
+
+      <!-- PANEL 1: ATENCIÓN INICIAL -->
+      <div id="panel-tab-inicial" class="tab-panel space-y-16">
+        <section id="inicio">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
+            Reconocimiento Inicial y Principios Básicos
+          </h2>
+          <p class="text-center text-lg text-gray-600 mb-8">
+            Al enfrentarse a un niño con sospecha de desnutrición aguda (DNA),
+            considere siempre los siguientes puntos clave.
           </p>
-        </div>
-      </section>
-
-      <section id="z-score-calculator-section" class="mb-16 scroll-mt-20">
-
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Calculadora de Puntuación Z de la OMS
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Calcule los Z-Scores antropométricos de un paciente.
-        </p>
-        <div class="card p-6 md:p-8">
-          <div class="grid md:grid-cols-2 gap-6">
-            <input type="hidden" id="wflZ"></input>
-            <input type="hidden" id="weightZ"></input>
-            <div>
-              <label
-                for="birthDate"
-                class="block text-sm font-medium text-gray-700"
-                >Fecha de Nacimiento:</label
-              >
-              <input
-                type="date"
-                id="birthDate"
-                required
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-              />
-            </div>
-            <div>
-              <label
-                for="measurementDate"
-                class="block text-sm font-medium text-gray-700"
-                >Fecha de Medición:</label
-              >
-              <input
-                type="date"
-                id="measurementDate"
-                required
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-              />
-            </div>
-            <div>
-              <label for="sex" class="block text-sm font-medium text-gray-700"
-                >Sexo:</label
-              >
-              <select
-                id="sex"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-              >
-                <option value="male">Masculino</option>
-                <option value="female">Femenino</option>
-              </select>
-            </div>
-            <div>
-              <label
-                for="weight-z"
-                class="block text-sm font-medium text-gray-700"
-                >Peso (kg):</label
-              >
-              <input
-                type="number"
-                id="weight-z"
-                step="0.1"
-                placeholder="e.g., 5.5"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-              />
-            </div>
-            <div>
-              <label
-                for="lengthHeight"
-                class="block text-sm font-medium text-gray-700"
-                >Talla/Longitud (cm):</label
-              >
-              <input
-                type="number"
-                id="lengthHeight"
-                step="0.1"
-                placeholder="e.g., 58.2"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-              />
-            </div>
-            <div>
-              <label
-                for="measure"
-                class="block text-sm font-medium text-gray-700"
-                >Posición de Medición:</label
-              >
-              <select
-                id="measure"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-              >
-                <option value="recumbent">Recostado (acostado)</option>
-                <option value="standing">De pie</option>
-              </select>
-            </div>
-            <div class="md:col-span-2">
-              <label
-                for="headCirc"
-                class="block text-sm font-medium text-gray-700"
-                >Perímetro Cefálico (cm) (Opcional):</label
-              >
-              <input
-                type="number"
-                id="headCirc"
-                step="0.1"
-                placeholder="e.g., 39.1"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-              />
-            </div>
-          </div>
-          <button
-            id="calculateBtn"
-            class="mt-6 w-full btn-primary font-bold py-2 px-4 rounded-lg"
-          >
-            Calcular Puntuaciones Z
-          </button>
-          <div id="results" class="mt-6 bg-gray-50 rounded-lg p-4"></div>
-        </div>
-      </section>
-
-      <section id="diagnostico" class="mb-16 scroll-mt-20">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Diagnóstico y Clasificación de Severidad
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Utilice esta herramienta para evaluar los indicadores antropométricos
-          y clínicos del paciente.
-        </p>
-        <div class="card p-6 md:p-8 space-y-8">
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 class="text-xl font-semibold mb-4">
-                Ingrese los datos del paciente:
-              </h3>
-              <div class="space-y-4">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700"
-                    >Edema bilateral con fóvea</label
-                  >
-                  <div class="mt-2 flex space-x-4">
-                    <label class="inline-flex items-center"
-                      ><input
-                        type="radio"
-                        name="edema"
-                        value="si"
-                        class="h-4 w-4 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-                      />
-                      <span class="ml-2">Sí</span></label
-                    >
-                    <label class="inline-flex items-center"
-                      ><input
-                        type="radio"
-                        name="edema"
-                        value="no"
-                        class="h-4 w-4 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-                        checked
-                      />
-                      <span class="ml-2">No</span></label
-                    >
-                  </div>
-                </div>
-                <div>
-                  <label
-                    for="pb"
-                    class="block text-sm font-medium text-gray-700"
-                    >Perímetro Braquial (PB) en cm</label
-                  >
-                  <input
-                    type="number"
-                    id="pb"
-                    step="0.1"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                    placeholder="Ej: 11.2"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="glucometria-valor"
-                    class="block text-sm font-medium text-gray-700"
-                    >Glucometría (mg/dl)</label
-                  >
-                  <input
-                    type="number"
-                    id="glucometria-valor"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                    placeholder="Ej: 70"
-                  />
-                </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card p-6 flex items-start space-x-4">
+              <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center">
+                <span class="text-xl">🚨</span>
               </div>
-              <button
-                id="diagnosticarBtn"
-                class="mt-8 w-full btn-primary font-bold py-2 px-4 rounded-lg"
-              >
-                Clasificar
-              </button>
+              <div>
+                <h3 class="font-semibold text-lg">Urgencia Vital</h3>
+                <p class="text-gray-600 mt-1">Reconocer la DNA como una condición que amenaza la vida.</p>
+              </div>
             </div>
-            <div class="bg-gray-50 rounded-lg p-6 flex flex-col justify-center">
-              <h3 class="text-xl font-semibold mb-4 text-center">
-                Resultado de la Clasificación
-              </h3>
-              <div id="resultado-diagnostico" class="text-center">
-                <p class="text-gray-500">
-                  Ingrese los datos y presione "Clasificar" para ver el
-                  resultado.
-                </p>
+            <div class="card p-6 flex items-start space-x-4">
+              <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center">
+                <span class="text-xl">💧</span>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Manejo Cauteloso</h3>
+                <p class="text-gray-600 mt-1">Tratar la rehidratación y micronutrientes con precaución.</p>
+              </div>
+            </div>
+            <div class="card p-6 flex items-start space-x-4">
+              <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center">
+                <span class="text-xl">⚖️</span>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Ganancia Gradual</h3>
+                <p class="text-gray-600 mt-1">Evitar la ganancia rápida de peso en la fase inicial.</p>
+              </div>
+            </div>
+            <div class="card p-6 flex items-start space-x-4">
+              <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center">
+                <span class="text-xl">🔬</span>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Evitar Paraclínicos</h3>
+                <p class="text-gray-600 mt-1">No realizar tomas innecesarias que no cambiarán el manejo.</p>
+              </div>
+            </div>
+            <div class="card p-6 flex items-start space-x-4">
+              <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center">
+                <span class="text-xl">🦠</span>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">Buscar Infecciones</h3>
+                <p class="text-gray-600 mt-1">Buscar y tratar procesos infecciosos o síndrome de realimentación.</p>
+              </div>
+            </div>
+            <div class="card p-6 flex items-start space-x-4">
+              <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#A3B18A]/20 flex items-center justify-center">
+                <span class="text-xl">🍼</span>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg">No Diluir FTLC</h3>
+                <p class="text-gray-600 mt-1">La Fórmula Terapéutica Lista para el Consumo no debe ser diluida.</p>
               </div>
             </div>
           </div>
-          <div class="border-t pt-8">
-            <h3 class="text-xl font-semibold mb-4">
-              Evaluación de Deshidratación (Escala DHAKA)
-            </h3>
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-              id="dhaka-form"
-            >
-              <div>
-                <p class="font-medium text-gray-700">Apariencia General</p>
-                <div class="mt-2 space-y-1">
-                  <label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_apariencia"
-                      value="0"
-                      id="dhaka-normal"
-                      class="h-4 w-4 text-[#A3B18A]"
-                      checked
-                    /><span class="ml-2 text-sm">Normal</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_apariencia"
-                      value="2"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Inquieto/Irritable</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_apariencia"
-                      value="4"
-                      id="dhaka-letargico"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm"
-                      >Letárgico/Inconsciente</span
-                    ></label
-                  >
-                </div>
-              </div>
-              <div>
-                <p class="font-medium text-gray-700">Respiración</p>
-                <div class="mt-2 space-y-1">
-                  <label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_respiracion"
-                      value="0"
-                      class="h-4 w-4 text-[#A3B18A]"
-                      checked
-                    /><span class="ml-2 text-sm">Normal</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_respiracion"
-                      value="2"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Profunda</span></label
-                  >
-                </div>
-              </div>
-              <div>
-                <p class="font-medium text-gray-700">Pliegue Cutáneo</p>
-                <div class="mt-2 space-y-1">
-                  <label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_piel"
-                      value="0"
-                      class="h-4 w-4 text-[#A3B18A]"
-                      checked
-                    /><span class="ml-2 text-sm">Regresa normal</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_piel"
-                      value="2"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Regresa lento</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_piel"
-                      value="4"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Regresa muy lento</span></label
-                  >
-                </div>
-              </div>
-              <div>
-                <p class="font-medium text-gray-700">Lágrimas</p>
-                <div class="mt-2 space-y-1">
-                  <label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_lagrimas"
-                      value="0"
-                      class="h-4 w-4 text-[#A3B18A]"
-                      checked
-                    /><span class="ml-2 text-sm">Normal</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_lagrimas"
-                      value="1"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Disminuidas</span></label
-                  ><label class="flex items-center"
-                    ><input
-                      type="radio"
-                      name="dhaka_lagrimas"
-                      value="2"
-                      class="h-4 w-4 text-[#A3B18A]"
-                    /><span class="ml-2 text-sm">Ausentes</span></label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="mt-4 text-center">
-              <button
-                id="calcular-dhaka-btn"
-                class="btn-secondary font-bold py-2 px-4 rounded-lg"
-              >
-                Calcular Deshidratación
-              </button>
-              <div id="resultado-dhaka" class="mt-2 font-semibold"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="complicaciones" class="mb-16 scroll-mt-20">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Identificar Complicaciones y Comorbilidades
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Marque cualquier condición presente. La presencia de CUALQUIER
-          complicación indica necesidad de manejo hospitalario.
-        </p>
-        <div class="card p-6 md:p-8">
-          <div
-            id="complicaciones-checklist"
-            class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4"
-          >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                data-text="Menor de 6 meses o >6m con peso <4 kg"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Menor de 6 meses o >6m con peso &lt;4 kg.</span
-              ></label
-            >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                id="complicacion-consciencia"
-                data-text="Estado de conciencia alterado"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Estado de conciencia alterado (letárgico, etc.).</span
-              ></label
-            >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                data-text="Edema nutricional severo (+++)"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Edema nutricional severo (+++).</span
-              ></label
-            >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                data-text="Diarrea/vómito persistente con deshidratación"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Diarrea/vómito persistente con deshidratación.</span
-              ></label
-            >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                data-text="Frecuencia respiratoria aumentada"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Frecuencia respiratoria aumentada.</span
-              ></label
-            >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                data-text="Temperatura <35.5°C o >38°C"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Temperatura &lt;35.5°C o >38°C.</span
-              ></label
-            >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                data-text="Lesiones ulcerativas extensas"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Lesiones ulcerativas extensas.</span
-              ></label
-            >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                data-text="Hb <4 g/dl o <6 g/dl con dificultad respiratoria"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Hb &lt;4 g/dl o &lt;6 g/dl con dificultad respiratoria.</span
-              ></label
-            >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                id="apetito-negativo"
-                data-text="Prueba de apetito negativa"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Prueba de apetito negativa.</span
-              ></label
-            >
-            <label class="flex items-start"
-              ><input
-                type="checkbox"
-                data-text="Condición médica/social que requiere intervención"
-                class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300"
-              />
-              <span class="ml-3 text-gray-700"
-                >Condición médica/social que requiere intervención.</span
-              ></label
-            >
-          </div>
-          <div
-            id="alerta-complicaciones"
-            class="hidden mt-6 p-4 alert-danger rounded-md"
-          >
-            <h4 class="font-bold">¡Atención! Manejo Hospitalario Requerido</h4>
-            <p>
-              El paciente presenta una o más complicaciones. Se debe iniciar
-              manejo hospitalario de inmediato.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="apetito" class="mb-16 scroll-mt-20">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Guía para Prueba de Apetito
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Paso a paso para realizar la prueba antes de decidir el manejo
-          ambulatorio en DNA Severa sin complicaciones.
-        </p>
-        <div class="card p-6 md:p-8">
-          <div class="alert-warning p-4 rounded-md mb-6">
-            <h4 class="font-bold">Importante</h4>
-            <p>
-              Esta prueba SÓLO se realiza en niños de 6 a 59 meses con DNA
-              Severa SIN complicaciones. Los niños menores de 6 meses SIEMPRE
-              requieren manejo hospitalario.
-            </p>
-          </div>
-          <ul class="space-y-4">
-            <li class="flex items-start">
-              <span class="font-bold text-[#A3B18A] mr-3 text-xl">1.</span>
-              <div>
-                <strong class="font-semibold">Explicar:</strong> Informe a la
-                madre/cuidador el objetivo y el procedimiento de la prueba.
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="font-bold text-[#A3B18A] mr-3 text-xl">2.</span>
-              <div>
-                <strong class="font-semibold">Higiene:</strong> Acompañe a la
-                madre/cuidador a lavarse las manos con agua y jabón.
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="font-bold text-[#A3B18A] mr-3 text-xl">3.</span>
-              <div>
-                <strong class="font-semibold">Posición:</strong> La
-                madre/cuidador debe sentarse cómodamente con el niño en su
-                regazo.
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="font-bold text-[#A3B18A] mr-3 text-xl">4.</span>
-              <div>
-                <strong class="font-semibold">Ofrecer FTLC:</strong> Abra un
-                sobre de FTLC y ofrézcalo directamente del sobre o con cuchara.
-                No obligar al niño.
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="font-bold text-[#A3B18A] mr-3 text-xl">5.</span>
-              <div>
-                <strong class="font-semibold">Observar:</strong> Observe la
-                aceptación durante 15 minutos. Felicite al niño con cada bocado.
-              </div>
-            </li>
-            <li class="flex items-start">
-              <span class="font-bold text-[#A3B18A] mr-3 text-xl">6.</span>
-              <div>
-                <strong class="font-semibold">Evaluar:</strong> Compare la
-                cantidad consumida con la tabla de referencia.
-              </div>
-            </li>
-          </ul>
-          <div class="mt-6 bg-gray-50 p-4 rounded-lg">
-            <h4 class="font-semibold text-center mb-2">
-              Criterios de Consumo Mínimo (Prueba Positiva)
+          <div class="mt-8 p-4 rounded-md bg-amber-50 border border-amber-200">
+            <h4 class="font-semibold text-amber-800">
+              Población Excluida del Lineamiento Estándar
             </h4>
-            <div class="overflow-x-auto">
-              <table class="w-full text-sm text-left">
-                <thead class="bg-gray-200">
-                  <tr>
-                    <th class="px-4 py-2">Peso</th>
-                    <th class="px-4 py-2">Consumo Mínimo</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-b">
-                    <td class="px-4 py-2">4 - 6.9 kg</td>
-                    <td class="px-4 py-2">1/4 de sobre</td>
-                  </tr>
-                  <tr class="border-b">
-                    <td class="px-4 py-2">7 - 9.9 kg</td>
-                    <td class="px-4 py-2">1/3 de sobre</td>
-                  </tr>
-                  <tr>
-                    <td class="px-4 py-2">10 - 14.9 kg</td>
-                    <td class="px-4 py-2">1/2 sobre</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div
-            id="resultado-apetito"
-            class="mt-4 text-center font-semibold"
-          ></div>
-        </div>
-      </section>
-
-      <section id="manejo" class="mb-16 scroll-mt-20">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Plan de Manejo Inicial
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Resumen, recomendación y plantilla para la historia clínica.
-        </p>
-        <div class="card p-6 md:p-8 space-y-6">
-          <div id="decision-manejo-resultado" class="text-center">
-            <p class="text-gray-500 text-lg">
-              Complete las secciones de diagnóstico y complicaciones para
-              generar la recomendación de manejo.
+            <p class="text-amber-700 mt-1">
+              Este lineamiento se enfoca en niños de 6 a 59 meses. Pacientes
+              mayores de 5 años o con comorbilidades graves (cáncer, enfermedad
+              metabólica, cardiopatía congénita, etc.) requieren un manejo
+              especializado.
             </p>
           </div>
-          <div id="plan-manejo-template" class="hidden">
-            <h3 class="text-xl font-semibold mb-2">
-              Plantilla: Análisis y Plan Inicial
-            </h3>
-            <div class="relative">
-              <textarea
-                id="plantilla-texto"
-                readonly
-                class="w-full h-[550px] p-3 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-800 font-mono"
-              ></textarea>
-              <button
-                id="copy-btn"
-                class="absolute top-2 right-2 btn-secondary text-xs font-semibold py-1 px-2 rounded"
-              >
-                Copiar
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="seguimiento" class="mb-16 scroll-mt-20">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Seguimiento Hospitalario
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Genere una nota de evolución para pacientes hospitalizados.
-        </p>
-        <div class="card p-6 md:p-8">
-          <div class="grid md:grid-cols-2 gap-8 items-start">
-            <div>
-              <h3 class="text-xl font-semibold mb-4">
-                Ingrese datos de seguimiento:
-              </h3>
-              <div class="space-y-4">
-                <div>
-                  <label
-                    for="peso-seguimiento"
-                    class="block text-sm font-medium text-gray-700"
-                    >Peso Actual (kg)</label
-                  >
-                  <input
-                    type="number"
-                    id="peso-seguimiento"
-                    step="0.1"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                    placeholder="Ej: 7.6"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="dia-tratamiento"
-                    class="block text-sm font-medium text-gray-700"
-                    >Día de Tratamiento</label
-                  >
-                  <input
-                    type="number"
-                    id="dia-tratamiento"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                    placeholder="Ej: 3"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="tipo-dnt-seguimiento"
-                    class="block text-sm font-medium text-gray-700"
-                    >Tipo de Desnutrición (Inicial)</label
-                  >
-                  <select
-                    id="tipo-dnt-seguimiento"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                  >
-                    <option value="moderada">Moderada</option>
-                    <option value="severa_sin_edema">Severa sin Edema</option>
-                    <option value="severa_con_edema">Severa con Edema</option>
-                  </select>
-                </div>
-                <button
-                  id="calcular-seguimiento-btn"
-                  class="w-full btn-primary font-bold py-2 px-4 rounded-lg"
-                >
-                  Generar Nota de Evolución
-                </button>
-              </div>
-            </div>
-            <div id="plan-seguimiento-template" class="hidden">
-              <h3 class="text-xl font-semibold mb-2">
-                Plantilla: Nota de Evolución
-              </h3>
-              <div class="relative">
-                <textarea
-                  id="plantilla-seguimiento-texto"
-                  readonly
-                  class="w-full h-[400px] p-3 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-800 font-mono"
-                ></textarea>
-                <button
-                  id="copy-seguimiento-btn"
-                  class="absolute top-2 right-2 btn-secondary text-xs font-semibold py-1 px-2 rounded"
-                >
-                  Copiar
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="egreso" class="mb-16 scroll-mt-20">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Evolución y Plan de Egreso Hospitalario
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Genere la nota de egreso para pacientes que completan el manejo
-          intrahospitalario.
-        </p>
-        <div class="card p-6 md:p-8">
-          <div class="grid md:grid-cols-2 gap-8 items-start">
-            <div>
-              <h3 class="text-xl font-semibold mb-4">
-                Ingrese datos de egreso:
-              </h3>
-              <div class="space-y-4">
-                <div>
-                  <label
-                    for="peso-egreso"
-                    class="block text-sm font-medium text-gray-700"
-                    >Peso de Egreso (kg)</label
-                  >
-                  <input
-                    type="number"
-                    id="peso-egreso"
-                    step="0.1"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                    placeholder="Ej: 8.0"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="tipo-dnt-egreso"
-                    class="block text-sm font-medium text-gray-700"
-                    >Tipo de Desnutrición (Inicial)</label
-                  >
-                  <select
-                    id="tipo-dnt-egreso"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                  >
-                    <option value="moderada">Moderada</option>
-                    <option value="severa">Severa</option>
-                  </select>
-                </div>
-                <button
-                  id="generar-egreso-btn"
-                  class="w-full btn-primary font-bold py-2 px-4 rounded-lg"
-                >
-                  Generar Plan de Egreso
-                </button>
-              </div>
-            </div>
-            <div id="plan-egreso-template" class="hidden">
-              <h3 class="text-xl font-semibold mb-2">
-                Plantilla: Nota de Egreso
-              </h3>
-              <div class="relative">
-                <textarea
-                  id="plantilla-egreso-texto"
-                  readonly
-                  class="w-full h-[500px] p-3 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-800 font-mono"
-                ></textarea>
-                <button
-                  id="copy-egreso-btn"
-                  class="absolute top-2 right-2 btn-secondary text-xs font-semibold py-1 px-2 rounded"
-                >
-                  Copiar
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="calculo-formulas" class="mb-16 scroll-mt-20">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Calculadora General de Fórmulas
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Calcule los requerimientos según la fase de tratamiento.
-        </p>
-        <div class="card p-6 md:p-8">
-          <div class="flex justify-center border-b border-gray-200 mb-6">
-            <button
-              id="tab-f75"
-              class="tab-btn active font-semibold py-2 px-6 rounded-t-lg"
-            >
-              Fase Hospitalaria (F-75)
-            </button>
-            <button
-              id="tab-ftlc"
-              class="tab-btn font-semibold py-2 px-6 rounded-t-lg"
-            >
-              Fase Ambulatoria (FTLC)
-            </button>
-          </div>
-
-          <div id="calculator-f75">
-            <div class="grid md:grid-cols-2 gap-8 items-start">
+        <section id="z-score-calculator-section">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
+            Calculadora de Puntuación Z de la OMS
+          </h2>
+          <p class="text-center text-lg text-gray-600 mb-8">
+            Calcule los Z-Scores antropométricos de un paciente.
+          </p>
+          <div class="card p-6 md:p-8">
+            <div class="grid md:grid-cols-2 gap-6">
+              <input type="hidden" id="wflZ"></input>
+              <input type="hidden" id="weightZ"></input>
               <div>
-                <h3 class="text-xl font-semibold mb-4">
-                  1. Ingrese los datos:
-                </h3>
+                <label for="birthDate" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento:</label>
+                <input type="date" id="birthDate" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" />
+              </div>
+              <div>
+                <label for="measurementDate" class="block text-sm font-medium text-gray-700">Fecha de Medición:</label>
+                <input type="date" id="measurementDate" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" />
+              </div>
+              <div>
+                <label for="sex" class="block text-sm font-medium text-gray-700">Sexo:</label>
+                <select id="sex" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm">
+                  <option value="male">Masculino</option>
+                  <option value="female">Femenino</option>
+                </select>
+              </div>
+              <div>
+                <label for="weight-z" class="block text-sm font-medium text-gray-700">Peso (kg):</label>
+                <input type="number" id="weight-z" step="0.1" placeholder="e.g., 5.5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" />
+              </div>
+              <div>
+                <label for="lengthHeight" class="block text-sm font-medium text-gray-700">Talla/Longitud (cm):</label>
+                <input type="number" id="lengthHeight" step="0.1" placeholder="e.g., 58.2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" />
+              </div>
+              <div>
+                <label for="measure" class="block text-sm font-medium text-gray-700">Posición de Medición:</label>
+                <select id="measure" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm">
+                  <option value="recumbent">Recostado (acostado)</option>
+                  <option value="standing">De pie</option>
+                </select>
+              </div>
+              <div class="md:col-span-2">
+                <label for="headCirc" class="block text-sm font-medium text-gray-700">Perímetro Cefálico (cm) (Opcional):</label>
+                <input type="number" id="headCirc" step="0.1" placeholder="e.g., 39.1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" />
+              </div>
+            </div>
+            <button id="calculateBtn" class="mt-6 w-full btn-primary font-bold py-2 px-4 rounded-lg">
+              Calcular Puntuaciones Z
+            </button>
+            <div id="results" class="mt-6 bg-gray-50 rounded-lg p-4"></div>
+          </div>
+        </section>
+
+        <section id="diagnostico">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
+            Diagnóstico y Clasificación de Severidad
+          </h2>
+          <p class="text-center text-lg text-gray-600 mb-8">
+            Utilice esta herramienta para evaluar los indicadores antropométricos y clínicos del paciente.
+          </p>
+          <div class="card p-6 md:p-8 space-y-8">
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 class="text-xl font-semibold mb-4">Ingrese los datos del paciente:</h3>
                 <div class="space-y-4">
                   <div>
-                    <label
-                      for="peso-f75"
-                      class="block text-sm font-medium text-gray-700"
-                      >Peso (kg)</label
-                    >
-                    <input
-                      type="number"
-                      id="peso-f75"
-                      step="0.1"
-                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                      placeholder="Ej: 7.5"
-                    />
+                    <label class="block text-sm font-medium text-gray-700">Edema bilateral con fóvea</label>
+                    <div class="mt-2 flex space-x-4">
+                      <label class="inline-flex items-center"><input type="radio" name="edema" value="si" class="h-4 w-4 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-2">Sí</span></label>
+                      <label class="inline-flex items-center"><input type="radio" name="edema" value="no" class="h-4 w-4 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" checked /><span class="ml-2">No</span></label>
+                    </div>
                   </div>
                   <div>
-                    <label
-                      for="tipo-dnt-f75"
-                      class="block text-sm font-medium text-gray-700"
-                      >Tipo de Desnutrición</label
-                    >
-                    <select
-                      id="tipo-dnt-f75"
-                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                    >
+                    <label for="pb" class="block text-sm font-medium text-gray-700">Perímetro Braquial (PB) en cm</label>
+                    <input type="number" id="pb" step="0.1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" placeholder="Ej: 11.2" />
+                  </div>
+                  <div>
+                    <label for="glucometria-valor" class="block text-sm font-medium text-gray-700">Glucometría (mg/dl)</label>
+                    <input type="number" id="glucometria-valor" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" placeholder="Ej: 70" />
+                  </div>
+                </div>
+                <button id="diagnosticarBtn" class="mt-8 w-full btn-primary font-bold py-2 px-4 rounded-lg">
+                  Clasificar
+                </button>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-6 flex flex-col justify-center">
+                <h3 class="text-xl font-semibold mb-4 text-center">Resultado de la Clasificación</h3>
+                <div id="resultado-diagnostico" class="text-center">
+                  <p class="text-gray-500">Ingrese los datos y presione "Clasificar" para ver el resultado.</p>
+                </div>
+              </div>
+            </div>
+            <div class="border-t pt-8">
+              <h3 class="text-xl font-semibold mb-4">Evaluación de Deshidratación (Escala DHAKA)</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="dhaka-form">
+                <div>
+                  <p class="font-medium text-gray-700">Apariencia General</p>
+                  <div class="mt-2 space-y-1">
+                    <label class="flex items-center"><input type="radio" name="dhaka_apariencia" value="0" id="dhaka-normal" class="h-4 w-4 text-[#A3B18A]" checked /><span class="ml-2 text-sm">Normal</span></label>
+                    <label class="flex items-center"><input type="radio" name="dhaka_apariencia" value="2" class="h-4 w-4 text-[#A3B18A]" /><span class="ml-2 text-sm">Inquieto/Irritable</span></label>
+                    <label class="flex items-center"><input type="radio" name="dhaka_apariencia" value="4" id="dhaka-letargico" class="h-4 w-4 text-[#A3B18A]" /><span class="ml-2 text-sm">Letárgico/Inconsciente</span></label>
+                  </div>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-700">Respiración</p>
+                  <div class="mt-2 space-y-1">
+                    <label class="flex items-center"><input type="radio" name="dhaka_respiracion" value="0" class="h-4 w-4 text-[#A3B18A]" checked /><span class="ml-2 text-sm">Normal</span></label>
+                    <label class="flex items-center"><input type="radio" name="dhaka_respiracion" value="2" class="h-4 w-4 text-[#A3B18A]" /><span class="ml-2 text-sm">Profunda</span></label>
+                  </div>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-700">Pliegue Cutáneo</p>
+                  <div class="mt-2 space-y-1">
+                    <label class="flex items-center"><input type="radio" name="dhaka_piel" value="0" class="h-4 w-4 text-[#A3B18A]" checked /><span class="ml-2 text-sm">Regresa normal</span></label>
+                    <label class="flex items-center"><input type="radio" name="dhaka_piel" value="2" class="h-4 w-4 text-[#A3B18A]" /><span class="ml-2 text-sm">Regresa lento</span></label>
+                    <label class="flex items-center"><input type="radio" name="dhaka_piel" value="4" class="h-4 w-4 text-[#A3B18A]" /><span class="ml-2 text-sm">Regresa muy lento</span></label>
+                  </div>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-700">Lágrimas</p>
+                  <div class="mt-2 space-y-1">
+                    <label class="flex items-center"><input type="radio" name="dhaka_lagrimas" value="0" class="h-4 w-4 text-[#A3B18A]" checked /><span class="ml-2 text-sm">Normal</span></label>
+                    <label class="flex items-center"><input type="radio" name="dhaka_lagrimas" value="1" class="h-4 w-4 text-[#A3B18A]" /><span class="ml-2 text-sm">Disminuidas</span></label>
+                    <label class="flex items-center"><input type="radio" name="dhaka_lagrimas" value="2" class="h-4 w-4 text-[#A3B18A]" /><span class="ml-2 text-sm">Ausentes</span></label>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 text-center">
+                <button id="calcular-dhaka-btn" class="btn-secondary font-bold py-2 px-4 rounded-lg">Calcular Deshidratación</button>
+                <div id="resultado-dhaka" class="mt-2 font-semibold"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="complicaciones">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">Identificar Complicaciones y Comorbilidades</h2>
+          <p class="text-center text-lg text-gray-600 mb-8">Marque cualquier condición presente. La presencia de CUALQUIER complicación indica necesidad de manejo hospitalario.</p>
+          <div class="card p-6 md:p-8">
+            <div id="complicaciones-checklist" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
+              <label class="flex items-start"><input type="checkbox" data-text="Menor de 6 meses o >6m con peso <4 kg" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Menor de 6 meses o >6m con peso &lt;4 kg.</span></label>
+              <label class="flex items-start"><input type="checkbox" id="complicacion-consciencia" data-text="Estado de conciencia alterado" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Estado de conciencia alterado (letárgico, etc.).</span></label>
+              <label class="flex items-start"><input type="checkbox" data-text="Edema nutricional severo (+++)" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Edema nutricional severo (+++).</span></label>
+              <label class="flex items-start"><input type="checkbox" data-text="Diarrea/vómito persistente con deshidratación" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Diarrea/vómito persistente con deshidratación.</span></label>
+              <label class="flex items-start"><input type="checkbox" data-text="Frecuencia respiratoria aumentada" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Frecuencia respiratoria aumentada.</span></label>
+              <label class="flex items-start"><input type="checkbox" data-text="Temperatura <35.5°C o >38°C" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Temperatura &lt;35.5°C o >38°C.</span></label>
+              <label class="flex items-start"><input type="checkbox" data-text="Lesiones ulcerativas extensas" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Lesiones ulcerativas extensas.</span></label>
+              <label class="flex items-start"><input type="checkbox" data-text="Hb <4 g/dl o <6 g/dl con dificultad respiratoria" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Hb &lt;4 g/dl o &lt;6 g/dl con dificultad respiratoria.</span></label>
+              <label class="flex items-start"><input type="checkbox" id="apetito-negativo" data-text="Prueba de apetito negativa" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Prueba de apetito negativa.</span></label>
+              <label class="flex items-start"><input type="checkbox" data-text="Condición médica/social que requiere intervención" class="h-5 w-5 rounded mt-0.5 text-[#A3B18A] focus:ring-[#A3B18A] border-gray-300" /><span class="ml-3 text-gray-700">Condición médica/social que requiere intervención.</span></label>
+            </div>
+            <div id="alerta-complicaciones" class="hidden mt-6 p-4 alert-danger rounded-md">
+              <h4 class="font-bold">¡Atención! Manejo Hospitalario Requerido</h4>
+              <p>El paciente presenta una o más complicaciones. Se debe iniciar manejo hospitalario de inmediato.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="apetito">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">Guía para Prueba de Apetito</h2>
+          <p class="text-center text-lg text-gray-600 mb-8">Paso a paso para realizar la prueba antes de decidir el manejo ambulatorio en DNA Severa sin complicaciones.</p>
+          <div class="card p-6 md:p-8">
+            <div class="alert-warning p-4 rounded-md mb-6">
+              <h4 class="font-bold">Importante</h4>
+              <p>Esta prueba SÓLO se realiza en niños de 6 a 59 meses con DNA Severa SIN complicaciones. Los niños menores de 6 meses SIEMPRE requieren manejo hospitalario.</p>
+            </div>
+            <ul class="space-y-4">
+              <li class="flex items-start"><span class="font-bold text-[#A3B18A] mr-3 text-xl">1.</span><div><strong class="font-semibold">Explicar:</strong> Informe a la madre/cuidador el objetivo y el procedimiento de la prueba.</div></li>
+              <li class="flex items-start"><span class="font-bold text-[#A3B18A] mr-3 text-xl">2.</span><div><strong class="font-semibold">Higiene:</strong> Acompañe a la madre/cuidador a lavarse las manos con agua y jabón.</div></li>
+              <li class="flex items-start"><span class="font-bold text-[#A3B18A] mr-3 text-xl">3.</span><div><strong class="font-semibold">Posición:</strong> La madre/cuidador debe sentarse cómodamente con el niño en su regazo.</div></li>
+              <li class="flex items-start"><span class="font-bold text-[#A3B18A] mr-3 text-xl">4.</span><div><strong class="font-semibold">Ofrecer FTLC:</strong> Abra un sobre de FTLC y ofrézcalo directamente del sobre o con cuchara. No obligar al niño.</div></li>
+              <li class="flex items-start"><span class="font-bold text-[#A3B18A] mr-3 text-xl">5.</span><div><strong class="font-semibold">Observar:</strong> Observe la aceptación durante 15 minutos. Felicite al niño con cada bocado.</div></li>
+              <li class="flex items-start"><span class="font-bold text-[#A3B18A] mr-3 text-xl">6.</span><div><strong class="font-semibold">Evaluar:</strong> Compare la cantidad consumida con la tabla de referencia.</div></li>
+            </ul>
+            <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-center mb-2">Criterios de Consumo Mínimo (Prueba Positiva)</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                  <thead class="bg-gray-200"><tr><th class="px-4 py-2">Peso</th><th class="px-4 py-2">Consumo Mínimo</th></tr></thead>
+                  <tbody>
+                    <tr class="border-b"><td class="px-4 py-2">4 - 6.9 kg</td><td class="px-4 py-2">1/4 de sobre</td></tr>
+                    <tr class="border-b"><td class="px-4 py-2">7 - 9.9 kg</td><td class="px-4 py-2">1/3 de sobre</td></tr>
+                    <tr><td class="px-4 py-2">10 - 14.9 kg</td><td class="px-4 py-2">1/2 sobre</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div id="resultado-apetito" class="mt-4 text-center font-semibold"></div>
+          </div>
+        </section>
+
+        <section id="manejo">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">Plan de Manejo Inicial</h2>
+          <p class="text-center text-lg text-gray-600 mb-8">Resumen, recomendación y plantilla para la historia clínica.</p>
+          <div class="card p-6 md:p-8 space-y-6">
+            <div id="decision-manejo-resultado" class="text-center">
+              <p class="text-gray-500 text-lg">Complete las secciones de diagnóstico y complicaciones para generar la recomendación de manejo.</p>
+            </div>
+            <div id="plan-manejo-template" class="hidden">
+              <h3 class="text-xl font-semibold mb-2">Plantilla: Análisis y Plan Inicial</h3>
+              <div class="relative">
+                <textarea id="plantilla-texto" readonly class="w-full h-[550px] p-3 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-800 font-mono"></textarea>
+                <button id="copy-btn" class="absolute top-2 right-2 btn-secondary text-xs font-semibold py-1 px-2 rounded">Copiar</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold text-center mb-4">Cronograma General del Tratamiento</h3>
+            <div class="chart-container">
+              <canvas id="timelineChart"></canvas>
+            </div>
+        </div>
+      </div>
+
+      <!-- PANEL 2: ESTABILIZACIÓN -->
+      <div id="panel-tab-estabilizacion" class="tab-panel hidden space-y-16">
+        
+        <section>
+          <div class="card p-6 md:p-8 bg-red-50 border-red-100">
+             <h3 class="font-bold text-2xl text-[#344E41] mb-4">Fase 1: Estabilización (24-72 horas)</h3>
+              <p class="font-medium mb-4 text-lg"><strong>Objetivo:</strong> Reanimación, corrección de condiciones agudas y inicio cauteloso del manejo nutricional.</p>
+              <ul class="list-disc list-inside space-y-2 text-gray-700 text-base">
+                <li><strong>A - Hipoxemia:</strong> Administrar oxígeno si es necesario.</li>
+                <li><strong>B - Hipoglicemia:</strong> Corregir con cautela.</li>
+                <li><strong>C - Choque:</strong> Reponer líquidos y electrolitos.</li>
+                <li><strong>D - Función Renal:</strong> Estimar gasto urinario.</li>
+                <li><strong>G - Anemia Grave:</strong> Transfundir si Hb &lt;4 g/dl o &lt;6 g/dl con falla cardíaca.</li>
+                <li><strong>H - Hipotermia:</strong> Abrigar y mantener calor corporal.</li>
+                <li><strong>I - Infección:</strong> Iniciar antibióticos según protocolo.</li>
+                <li><strong>Manejo de líquidos:</strong> Clasificar deshidratación (escala DHAKA). Preferir vía oral/SNG. Si hay alteración de conciencia, bolo de Lactato de Ringer 15 ml/kg en 1h y reevaluar.</li>
+              </ul>
+          </div>
+        </section>
+
+        <section id="seguimiento">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">Seguimiento Hospitalario (Diario)</h2>
+          <p class="text-center text-lg text-gray-600 mb-8">Genere una nota de evolución para pacientes hospitalizados.</p>
+          <div class="card p-6 md:p-8">
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+              <div>
+                <h3 class="text-xl font-semibold mb-4">Ingrese datos de seguimiento:</h3>
+                <div class="space-y-4">
+                  <div>
+                    <label for="peso-seguimiento" class="block text-sm font-medium text-gray-700">Peso Actual (kg)</label>
+                    <input type="number" id="peso-seguimiento" step="0.1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" placeholder="Ej: 7.6" />
+                  </div>
+                  <div>
+                    <label for="dia-tratamiento" class="block text-sm font-medium text-gray-700">Día de Tratamiento</label>
+                    <input type="number" id="dia-tratamiento" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" placeholder="Ej: 3" />
+                  </div>
+                  <div>
+                    <label for="tipo-dnt-seguimiento" class="block text-sm font-medium text-gray-700">Tipo de Desnutrición (Inicial)</label>
+                    <select id="tipo-dnt-seguimiento" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm">
                       <option value="moderada">Moderada</option>
                       <option value="severa_sin_edema">Severa sin Edema</option>
                       <option value="severa_con_edema">Severa con Edema</option>
                     </select>
                   </div>
-                  <button
-                    id="calcular-f75-btn"
-                    class="w-full btn-primary font-bold py-2 px-4 rounded-lg"
-                  >
-                    Calcular F-75
-                  </button>
+                  <button id="calcular-seguimiento-btn" class="w-full btn-primary font-bold py-2 px-4 rounded-lg">Generar Nota de Evolución</button>
                 </div>
               </div>
-              <div
-                id="resultado-f75"
-                class="bg-gray-50 rounded-lg p-6 min-h-[200px]"
-              >
-                <p class="text-gray-500">
-                  Ingrese los datos para ver el cálculo.
-                </p>
+              <div id="plan-seguimiento-template" class="hidden">
+                <h3 class="text-xl font-semibold mb-2">Plantilla: Nota de Evolución</h3>
+                <div class="relative">
+                  <textarea id="plantilla-seguimiento-texto" readonly class="w-full h-[400px] p-3 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-800 font-mono"></textarea>
+                  <button id="copy-seguimiento-btn" class="absolute top-2 right-2 btn-secondary text-xs font-semibold py-1 px-2 rounded">Copiar</button>
+                </div>
               </div>
             </div>
           </div>
+        </section>
 
-          <div id="calculator-ftlc" class="hidden">
+        <section id="calculo-f75-section">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">Calculadora F-75 (Fase Hospitalaria)</h2>
+          <p class="text-center text-lg text-gray-600 mb-8">Calcule los requerimientos para la fase de estabilización.</p>
+          <div class="card p-6 md:p-8" id="calculator-f75">
             <div class="grid md:grid-cols-2 gap-8 items-start">
               <div>
-                <h3 class="text-xl font-semibold mb-4">
-                  1. Ingrese los datos:
-                </h3>
+                <h3 class="text-xl font-semibold mb-4">1. Ingrese los datos:</h3>
                 <div class="space-y-4">
                   <div>
-                    <label
-                      for="peso-ftlc"
-                      class="block text-sm font-medium text-gray-700"
-                      >Peso (kg)</label
-                    >
-                    <input
-                      type="number"
-                      id="peso-ftlc"
-                      step="0.1"
-                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                      placeholder="Ej: 8.7"
-                    />
+                    <label for="peso-f75" class="block text-sm font-medium text-gray-700">Peso (kg)</label>
+                    <input type="number" id="peso-f75" step="0.1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" placeholder="Ej: 7.5" />
                   </div>
                   <div>
-                    <label
-                      for="tipo-dnt-ftlc"
-                      class="block text-sm font-medium text-gray-700"
-                      >Tipo de Desnutrición</label
-                    >
-                    <select
-                      id="tipo-dnt-ftlc"
-                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                    >
+                    <label for="tipo-dnt-f75" class="block text-sm font-medium text-gray-700">Tipo de Desnutrición</label>
+                    <select id="tipo-dnt-f75" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm">
+                      <option value="moderada">Moderada</option>
+                      <option value="severa_sin_edema">Severa sin Edema</option>
+                      <option value="severa_con_edema">Severa con Edema</option>
+                    </select>
+                  </div>
+                  <button id="calcular-f75-btn" class="w-full btn-primary font-bold py-2 px-4 rounded-lg">Calcular F-75</button>
+                </div>
+              </div>
+              <div id="resultado-f75" class="bg-gray-50 rounded-lg p-6 min-h-[200px]">
+                <p class="text-gray-500">Ingrese los datos para ver el cálculo.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- PANEL 3: TRANSICIÓN -->
+      <div id="panel-tab-transicion" class="tab-panel hidden space-y-16">
+        <section>
+          <div class="card p-6 md:p-8 bg-amber-50 border-amber-100">
+             <h3 class="font-bold text-2xl text-[#344E41] mb-4">Fase 2: Transición (3 a 14 días)</h3>
+              <p class="font-medium mb-4 text-lg"><strong>Objetivo:</strong> Transición progresiva de F-75 a FTLC. Continuar vigilancia y tratamiento de comorbilidades.</p>
+              <ul class="list-disc list-inside space-y-2 text-gray-700 text-base">
+                <li><strong>E - Función Intestinal:</strong> Iniciar alimentación enteral (oral o SNG).</li>
+                <li><strong>F - Anemia Grave:</strong> Corregir si no se hizo en fase 1.</li>
+                <li><strong>L - Lactancia Materna:</strong> Continuar y promover activamente.</li>
+                <li><strong>M - Micronutrientes:</strong> Identificar y corregir deficiencias específicas.</li>
+                <li><strong>N - Nutrición:</strong> Definir y ajustar el manejo nutricional.</li>
+                <li><strong>P - Piel:</strong> Estabilizar y tratar cualquier compromiso cutáneo.</li>
+              </ul>
+          </div>
+        </section>
+        
+        <div class="text-center p-8 bg-gray-50 rounded-lg border border-gray-200">
+          <p class="text-lg text-gray-600">Continúe utilizando la herramienta de <strong>Seguimiento Hospitalario</strong> (disponible en la pestaña de Estabilización) para registrar la evolución diaria.</p>
+        </div>
+      </div>
+
+      <!-- PANEL 4: REHABILITACIÓN -->
+      <div id="panel-tab-rehabilitacion" class="tab-panel hidden space-y-16">
+        <section>
+          <div class="card p-6 md:p-8 bg-green-50 border-green-100">
+             <h3 class="font-bold text-2xl text-[#344E41] mb-4">Fase 3: Rehabilitación (Hasta 60 días)</h3>
+              <p class="font-medium mb-4 text-lg"><strong>Objetivo:</strong> Aumento progresivo del aporte calórico para lograr crecimiento compensatorio. Preparación para seguimiento ambulatorio.</p>
+              <ul class="list-disc list-inside space-y-2 text-gray-700 text-base">
+                <li><strong>R - Síndrome de Realimentación:</strong> Anticipar riesgo, detectar y monitorear.</li>
+                <li><strong>S - Estimulación del Desarrollo:</strong> Promover cuidado amoroso, estímulo y juego.</li>
+                <li><strong>V - Vacunación:</strong> Asegurar que el esquema de vacunación esté completo.</li>
+              </ul>
+          </div>
+        </section>
+
+        <section id="calculo-ftlc-section">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">Calculadora FTLC (Fase Ambulatoria)</h2>
+          <p class="text-center text-lg text-gray-600 mb-8">Calcule los requerimientos de Fórmula Terapéutica Lista para el Consumo.</p>
+          <div class="card p-6 md:p-8" id="calculator-ftlc">
+            <!-- Removed class hidden, will control visibility via main tabs -->
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+              <div>
+                <h3 class="text-xl font-semibold mb-4">1. Ingrese los datos:</h3>
+                <div class="space-y-4">
+                  <div>
+                    <label for="peso-ftlc" class="block text-sm font-medium text-gray-700">Peso (kg)</label>
+                    <input type="number" id="peso-ftlc" step="0.1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" placeholder="Ej: 8.7" />
+                  </div>
+                  <div>
+                    <label for="tipo-dnt-ftlc" class="block text-sm font-medium text-gray-700">Tipo de Desnutrición</label>
+                    <select id="tipo-dnt-ftlc" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm">
                       <option value="moderada">Moderada</option>
                       <option value="severa">Severa</option>
                     </select>
                   </div>
                   <div>
-                    <label
-                      for="etapa-ftlc"
-                      class="block text-sm font-medium text-gray-700"
-                      >Etapa del Tratamiento</label
-                    >
-                    <select
-                      id="etapa-ftlc"
-                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"
-                    ></select>
+                    <label for="etapa-ftlc" class="block text-sm font-medium text-gray-700">Etapa del Tratamiento</label>
+                    <select id="etapa-ftlc" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm"></select>
                   </div>
-                  <button
-                    id="calcular-ftlc-btn"
-                    class="w-full btn-primary font-bold py-2 px-4 rounded-lg"
-                  >
-                    Calcular FTLC
-                  </button>
+                  <button id="calcular-ftlc-btn" class="w-full btn-primary font-bold py-2 px-4 rounded-lg">Calcular FTLC</button>
                 </div>
               </div>
-              <div
-                id="resultado-ftlc"
-                class="bg-gray-50 rounded-lg p-6 min-h-[200px]"
-              >
-                <p class="text-gray-500">
-                  Ingrese los datos para ver el cálculo.
-                </p>
+              <div id="resultado-ftlc" class="bg-gray-50 rounded-lg p-6 min-h-[200px]">
+                <p class="text-gray-500">Ingrese los datos para ver el cálculo.</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="tratamiento" class="scroll-mt-20">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">
-          Fases del Tratamiento Hospitalario
-        </h2>
-        <p class="text-center text-lg text-gray-600 mb-8">
-          Guía de acciones basadas en el "ABCDARIO Terapéutico" para cada fase
-          del tratamiento.
-        </p>
+        <section id="egreso">
+          <h2 class="text-3xl font-bold text-center mb-2 text-[#344E41]">Evolución y Plan de Egreso Hospitalario</h2>
+          <p class="text-center text-lg text-gray-600 mb-8">Genere la nota de egreso para pacientes que completan el manejo intrahospitalario.</p>
+          <div class="card p-6 md:p-8">
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+              <div>
+                <h3 class="text-xl font-semibold mb-4">Ingrese datos de egreso:</h3>
+                <div class="space-y-4">
+                  <div>
+                    <label for="peso-egreso" class="block text-sm font-medium text-gray-700">Peso de Egreso (kg)</label>
+                    <input type="number" id="peso-egreso" step="0.1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm" placeholder="Ej: 8.0" />
+                  </div>
+                  <div>
+                    <label for="tipo-dnt-egreso" class="block text-sm font-medium text-gray-700">Tipo de Desnutrición (Inicial)</label>
+                    <select id="tipo-dnt-egreso" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#A3B18A] focus:ring-[#A3B18A] sm:text-sm">
+                      <option value="moderada">Moderada</option>
+                      <option value="severa">Severa</option>
+                    </select>
+                  </div>
+                  <button id="generar-egreso-btn" class="w-full btn-primary font-bold py-2 px-4 rounded-lg">Generar Plan de Egreso</button>
+                </div>
+              </div>
+              <div id="plan-egreso-template" class="hidden">
+                <h3 class="text-xl font-semibold mb-2">Plantilla: Nota de Egreso</h3>
+                <div class="relative">
+                  <textarea id="plantilla-egreso-texto" readonly class="w-full h-[500px] p-3 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-800 font-mono"></textarea>
+                  <button id="copy-egreso-btn" class="absolute top-2 right-2 btn-secondary text-xs font-semibold py-1 px-2 rounded">Copiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-        <div class="mb-8">
-          <h3 class="text-xl font-semibold text-center mb-4">
-            Cronograma General del Tratamiento
-          </h3>
-          <div class="chart-container">
-            <canvas id="timelineChart"></canvas>
-          </div>
-        </div>
-
-        <div class="space-y-4" id="accordion-container">
-          <div class="card overflow-hidden">
-            <div class="accordion-header p-5 flex justify-between items-center">
-              <h3 class="font-semibold text-lg text-[#344E41]">
-                Fase 1: Estabilización (24-72 horas)
-              </h3>
-              <span class="transform transition-transform duration-300">▼</span>
-            </div>
-            <div class="accordion-content px-5 pb-5">
-              <p class="font-medium mb-4">
-                <strong>Objetivo:</strong> Reanimación, corrección de
-                condiciones agudas y inicio cauteloso del manejo nutricional.
-              </p>
-              <ul class="list-disc list-inside space-y-2 text-gray-700">
-                <li>
-                  <strong>A - Hipoxemia:</strong> Administrar oxígeno si es
-                  necesario.
-                </li>
-                <li>
-                  <strong>B - Hipoglicemia:</strong> Corregir con cautela.
-                </li>
-                <li>
-                  <strong>C - Choque:</strong> Reponer líquidos y electrolitos.
-                </li>
-                <li>
-                  <strong>D - Función Renal:</strong> Estimar gasto urinario.
-                </li>
-                <li>
-                  <strong>G - Anemia Grave:</strong> Transfundir si Hb &lt;4
-                  g/dl o &lt;6 g/dl con falla cardíaca.
-                </li>
-                <li>
-                  <strong>H - Hipotermia:</strong> Abrigar y mantener calor
-                  corporal.
-                </li>
-                <li>
-                  <strong>I - Infección:</strong> Iniciar antibióticos según
-                  protocolo.
-                </li>
-                <li>
-                  <strong>Manejo de líquidos:</strong> Clasificar deshidratación
-                  (escala DHAKA). Preferir vía oral/SNG. Si hay alteración de
-                  conciencia, bolo de Lactato de Ringer 15 ml/kg en 1h y
-                  reevaluar.
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="card overflow-hidden">
-            <div class="accordion-header p-5 flex justify-between items-center">
-              <h3 class="font-semibold text-lg text-[#344E41]">
-                Fase 2: Transición (3 a 14 días)
-              </h3>
-              <span class="transform transition-transform duration-300">▼</span>
-            </div>
-            <div class="accordion-content px-5 pb-5">
-              <p class="font-medium mb-4">
-                <strong>Objetivo:</strong> Transición progresiva de F-75 a FTLC.
-                Continuar vigilancia y tratamiento de comorbilidades.
-              </p>
-              <ul class="list-disc list-inside space-y-2 text-gray-700">
-                <li>
-                  <strong>E - Función Intestinal:</strong> Iniciar alimentación
-                  enteral (oral o SNG).
-                </li>
-                <li>
-                  <strong>F - Anemia Grave:</strong> Corregir si no se hizo en
-                  fase 1.
-                </li>
-                <li>
-                  <strong>L - Lactancia Materna:</strong> Continuar y promover
-                  activamente.
-                </li>
-                <li>
-                  <strong>M - Micronutrientes:</strong> Identificar y corregir
-                  deficiencias específicas.
-                </li>
-                <li>
-                  <strong>N - Nutrición:</strong> Definir y ajustar el manejo
-                  nutricional.
-                </li>
-                <li>
-                  <strong>P - Piel:</strong> Estabilizar y tratar cualquier
-                  compromiso cutáneo.
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="card overflow-hidden">
-            <div class="accordion-header p-5 flex justify-between items-center">
-              <h3 class="font-semibold text-lg text-[#344E41]">
-                Fase 3: Rehabilitación (Hasta 60 días)
-              </h3>
-              <span class="transform transition-transform duration-300">▼</span>
-            </div>
-            <div class="accordion-content px-5 pb-5">
-              <p class="font-medium mb-4">
-                <strong>Objetivo:</strong> Aumento progresivo del aporte
-                calórico para lograr crecimiento compensatorio. Preparación para
-                seguimiento ambulatorio.
-              </p>
-              <ul class="list-disc list-inside space-y-2 text-gray-700">
-                <li>
-                  <strong>R - Síndrome de Realimentación:</strong> Anticipar
-                  riesgo, detectar y monitorear.
-                </li>
-                <li>
-                  <strong>S - Estimulación del Desarrollo:</strong> Promover
-                  cuidado amoroso, estímulo y juego.
-                </li>
-                <li>
-                  <strong>V - Vacunación:</strong> Asegurar que el esquema de
-                  vacunación esté completo.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="bg-white mt-16 border-t">
-      <div
-        class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm"
-      >
-        <p>
-          Diseñado por Diana Carolina Ariza Duque. Basado en: Lineamiento para
-          el manejo integrado de la desnutrición aguda moderada y severa en
-          niños y niñas de 0 a 59 meses de edad (Resolución Nº 2350 de 2020).
-        </p>
+      <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+        <p>Diseñado por Diana Carolina Ariza Duque. Basado en: Lineamiento para el manejo integrado de la desnutrición aguda moderada y severa en niños y niñas de 0 a 59 meses de edad (Resolución Nº 2350 de 2020).</p>
       </div>
     </footer>
 
