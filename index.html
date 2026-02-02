@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Guía Interactiva: Manejo de la Desnutrición Aguda Infantil</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -70,21 +69,6 @@
         background-color: #fee2e2;
         color: #991b1b;
         border-left: 4px solid #ef4444;
-      }
-      .chart-container {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        height: 250px;
-        max-height: 300px;
-      }
-      @media (min-width: 768px) {
-        .chart-container {
-          height: 300px;
-          max-height: 350px;
-        }
       }
     </style>
   </head>
@@ -398,12 +382,6 @@
           </div>
         </section>
 
-        <div class="mb-8">
-            <h3 class="text-xl font-semibold text-center mb-4">Cronograma General del Tratamiento</h3>
-            <div class="chart-container">
-              <canvas id="timelineChart"></canvas>
-            </div>
-        </div>
       </div>
 
       <!-- PANEL 2: ESTABILIZACIÓN -->

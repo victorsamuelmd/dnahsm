@@ -228,6 +228,18 @@ function flagBIV(zScore, lower, upper) {
   return null;
 }
 
+function calcularPreparacionF75(volumenObjetivo) {
+  if (!volumenObjetivo || volumenObjetivo <= 0)
+    return { scoops: 0, agua: 0, volumenFinal: 0 };
+  const scoops = Math.round(volumenObjetivo / 27.5);
+  const finalScoops = Math.max(1, scoops);
+  return {
+    scoops: finalScoops,
+    agua: finalScoops * 25,
+    volumenFinal: finalScoops * 27.5,
+  };
+}
+
 // Original hsm.html script
 document.addEventListener("DOMContentLoaded", function() {
   const wflZ = document.getElementById("wflZ");
@@ -568,9 +580,9 @@ function generarTextoDhaka(condiciones) {
         tipoF75 = edema ? "severa_con_edema" : "severa_sin_edema";
       }
       const ampicilinaDosis = Math.round(peso * 50);
-      const volTomaDia1 = Math.round(peso * f75Data.estabilizacion[tipoF75][0]);
-      const mlKgDia2 = f75Data.estabilizacion[tipoF75][1];
-      const mlKgDia3 = f75Data.transicion[tipoF75][0];
+      const prepDia1 = calcularPreparacionF75(peso * f75Data.estabilizacion[tipoF75][0]);
+      const prepDia2 = calcularPreparacionF75(peso * f75Data.estabilizacion[tipoF75][1]);
+      const prepDia3 = calcularPreparacionF75(peso * f75Data.transicion[tipoF75][0]);
 
       plan =
         `Se decide hospitalizar para manejo de Desnutrición Aguda ${clasificacion} con complicaciones. Se inicia plan de estabilización:\n` +
@@ -579,7 +591,7 @@ function generarTextoDhaka(condiciones) {
 ` +
         `3. ${planHidratacion} Vigilar estrictamente signos de sobrecarga hídrica.\n` +
         `4. D - Vigilar función renal y estimar gasto urinario.\n` +
-        `5. F - Iniciar F-75: Administrar ${volTomaDia1} ml cada 3 horas. Se recomienda aumento progresivo según evolución y tolerancia: Día 2 a ${mlKgDia2} ml/kg/toma y Día 3 a ${mlKgDia3} ml/kg/toma (recalcular con peso diario).\n` +
+        `5. F - Iniciar F-75: Administrar ${prepDia1.volumenFinal} ml cada 3 horas (Preparar con ${prepDia1.scoops} cucharadas en ${prepDia1.agua} ml de agua). Se recomienda aumento progresivo según evolución y tolerancia: Día 2 a ${prepDia2.volumenFinal} ml/kg/toma (${prepDia2.scoops} cuch. en ${prepDia2.agua} ml agua) y Día 3 a ${prepDia3.volumenFinal} ml/kg/toma (${prepDia3.scoops} cuch. en ${prepDia3.agua} ml agua). (recalcular con peso diario).\n` +
         `6. G - Corregir Anemia Grave: Transfundir GRE (10 ml/kg en 3h) si Hb < 4, o < 6 con falla cardíaca.\n` +
         `7. H - Manejo de Hipotermia: Abrigar y mantener calor corporal.\n` +
         `8. I - Infección: Iniciar Ampicilina ${ampicilinaDosis} mg IV cada 6 horas.\n` +
@@ -744,23 +756,22 @@ function generarTextoDhaka(condiciones) {
       return;
     }
 
-    const estabilizacionMlKg = f75Data.estabilizacion[tipo][0];
-    const estabilizacionToma = Math.round(peso * estabilizacionMlKg);
-    const estabilizacionDia = estabilizacionToma * 8;
+    const prepEstabilizacion = calcularPreparacionF75(peso * f75Data.estabilizacion[tipo][0]);
 
     let transicionHTML = f75Data.transicion[tipo]
       .map((mlkg, index) => {
-        const volToma = Math.round(peso * mlkg);
-        return `<tr><td class="py-1 px-2 border">Paso ${index + 1}</td><td class="py-1 px-2 border">${volToma} ml</td></tr>`;
+        const prep = calcularPreparacionF75(peso * mlkg);
+        return `<tr><td class="py-1 px-2 border">Paso ${index + 1}</td><td class="py-1 px-2 border">${prep.volumenFinal} ml</td><td class="py-1 px-2 border">${prep.scoops}</td><td class="py-1 px-2 border">${prep.agua} ml</td></tr>`;
       })
       .join("");
 
     resultadoF75Div.innerHTML = `
                     <h4 class="font-bold text-lg mb-2">Fase Estabilización</h4>
-                    <p><strong>Volumen por toma (24h iniciales):</strong> <span class="text-lg font-semibold text-[#A3B18A]">${estabilizacionToma} ml</span> (cada 3h)</p>
+                    <p><strong>Volumen por toma (24h iniciales):</strong> <span class="text-lg font-semibold text-[#A3B18A]">${prepEstabilizacion.volumenFinal} ml</span> (cada 3h)</p>
+                    <p class="text-sm text-gray-600 mb-4">Preparar con: <strong>${prepEstabilizacion.scoops}</strong> cucharadas en <strong>${prepEstabilizacion.agua}</strong> ml de agua.</p>
                     <h4 class="font-bold text-lg mt-4 mb-2">Fase Transición (Progresión)</h4>
                     <table class="w-full text-sm text-left border-collapse">
-                        <thead><tr class="bg-gray-100"><th class="py-1 px-2 border">Etapa</th><th class="py-1 px-2 border">Volumen por Toma</th></tr></thead>
+                        <thead><tr class="bg-gray-100"><th class="py-1 px-2 border">Etapa</th><th class="py-1 px-2 border">Volumen Final</th><th class="py-1 px-2 border">Cucharadas</th><th class="py-1 px-2 border">Agua</th></tr></thead>
                         <tbody>${transicionHTML}</tbody>
                     </table>
                 `;
@@ -817,10 +828,8 @@ function generarTextoDhaka(condiciones) {
         proximoMlKg = pasosTransicion[pasoIndex];
         proximaFaseTexto = `Fase de Transición (Día ${dia}, Paso ${pasoIndex + 1})`;
       }
-      const nuevoVolumenToma = Math.round(peso * proximoMlKg);
-      const cucharadas = (nuevoVolumenToma * 0.0365).toFixed(1);
-      const agua = (nuevoVolumenToma * 0.91).toFixed(1);
-      planNutricional = `N - Nutrición: Se ajusta/progresa Fórmula F-75 a ${nuevoVolumenToma} ml cada 3 horas, correspondiente a ${proximaFaseTexto}. (Preparar con ${cucharadas} cucharadas en ${agua} ml de agua).`;
+      const prep = calcularPreparacionF75(peso * proximoMlKg);
+      planNutricional = `N - Nutrición: Se ajusta/progresa Fórmula F-75 a ${prep.volumenFinal} ml cada 3 horas, correspondiente a ${proximaFaseTexto}. (Preparar con ${prep.scoops} cucharadas en ${prep.agua} ml de agua).`;
     } else {
       const etapaIndex = obtenerRangoPorDias(tipo, dia);
       const sobresDia = calculateFtlc(peso, tipo, etapaIndex);
@@ -961,78 +970,6 @@ function generarTextoDhaka(condiciones) {
       resultadoDhakaDiv.className = "mt-2 font-semibold text-red-600";
     }
     actualizarDecisionManejo(); // Recalculate plan with new DHAKA score
-  });
-
-  const ctx = document.getElementById("timelineChart").getContext("2d");
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ["Fases del Tratamiento"],
-      datasets: [
-        {
-          label: "Estabilización (días)",
-          data: [3],
-          backgroundColor: "#FEE2E2",
-          borderColor: "#EF4444",
-          borderWidth: 1,
-          barPercentage: 0.5,
-        },
-        {
-          label: "Transición (días)",
-          data: [11],
-          backgroundColor: "#FEF3C7",
-          borderColor: "#F59E0B",
-          borderWidth: 1,
-          barPercentage: 0.5,
-        },
-        {
-          label: "Rehabilitación (días)",
-          data: [46],
-          backgroundColor: "#D1FAE5",
-          borderColor: "#10B981",
-          borderWidth: 1,
-          barPercentage: 0.5,
-        },
-      ],
-    },
-    options: {
-      indexAxis: "y",
-      maintainAspectRatio: false,
-      responsive: true,
-      plugins: {
-        title: {
-          display: true,
-          text: "Duración Aproximada por Fase (Total ~60 días)",
-        },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              let label = context.dataset.label || "";
-              if (label) {
-                label += ": ";
-              }
-              if (context.parsed.x !== null) {
-                let duration = context.parsed.x;
-                if (context.datasetIndex === 0) label += `1 a ${duration}`;
-                if (context.datasetIndex === 1)
-                  label += `${3 + 1} a ${3 + duration}`;
-                if (context.datasetIndex === 2)
-                  label += `${14 + 1} a ${14 + duration}`;
-                label += " días";
-              }
-              return label;
-            },
-          },
-        },
-      },
-      scales: {
-        x: {
-          stacked: true,
-          title: { display: true, text: "Días de Tratamiento" },
-        },
-        y: { stacked: true },
-      },
-    },
   });
 
   const complicacionConsciencia = document.getElementById('complicacion-consciencia');
